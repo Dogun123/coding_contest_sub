@@ -16,6 +16,7 @@
   --color-black: #000000;
   --homebackground-color-black: rgb(3, 4, 13);
   --color-blue: #1a73e8;
+  --color-white-grey:rgb(224, 222, 222);
 
   /* Font size */
   --font-large: 48px;
@@ -33,6 +34,9 @@
   --size-border-radius: 4px;
   /* Animation*/
   --animation-duration: 300ms;
+
+  /* puzzle */
+  --puzzle-url: url(imgs/korea_puzzle.png)
 }
 
 /* Universal tags */
@@ -109,10 +113,15 @@ p {
 
 .dropdown_menu {
   position: absolute;
-  top: 60px;
-  right: -5px;
+  top: 46px;
+  right: -15px;
   display: none;
   z-index: 1;
+  background-color: var(--color-pink);
+  width: 100px;
+  border: 2px solid var(--color-dark-pink);
+  border-top: 0px;
+  border-radius: 0.5px;
 }
 
 .dropdown_menu.open {
@@ -120,11 +129,48 @@ p {
 }
 
 .detail_menu {
+  padding-top: 6px;
   padding-bottom: 10px;
+  border-top: 1px solid var(--color-dark-pink);
 }
 
 .detail_menu a:hover {
   color: cyan;
+}
+
+/* keyframes */
+
+.blink__animation{
+  animation: blinkAnimation 1.5s linear infinite;
+}
+
+@keyframes blinkAnimation {
+  0% {
+    border: 2.5px solid white;
+  }
+  50% {
+    border: 2.5px solid red;
+  }
+  100% {
+    border: 2.5px solid white;
+  }
+
+}
+
+@keyframes skipAnimation {
+  0%{
+    color:white;
+  }
+  
+  50%{
+    color:var(--color-blue);
+  }
+
+  100%{
+    color:white;
+  }
+  
+    
 }
 
 /* Navbar */
@@ -132,12 +178,11 @@ p {
 #navbar {
   position: fixed;
   width: 100%;
-  height: 8%;
+  height: 70px;
   display: flex;
   color: var(--color-white);
   background-color: rgba(0, 0, 0, 0.3);
   align-items: center;
-  padding: 10px;
   padding-right: 30px;
   border-bottom: 1.5px solid var(--color-white);
   color: rgba(255, 255, 255, 1);
@@ -164,13 +209,14 @@ p {
   position: relative;
   display: block;
   left: 50%;
-  margin-left: -10px;
-  margin-top: 23px;
-  width: 50px;
+  margin-left: -12px;
+  margin-top: 10px;
+  width: 0px;
   height: 2.5px;
   transform: translateX(-30%);
-  background-color: var(--color-blue);
+  background-color: var(--color-dark-pink);
   opacity: 0;
+  transition: all var(--animation-duration) ease-in;
 }
 
 .line.open {
@@ -180,6 +226,7 @@ p {
 /* Navbar */
 .nav__links--item:hover .line {
   opacity: 1;
+  width: 63px;
 }
 
 .nav__links {
@@ -189,21 +236,33 @@ p {
 
 .nav__links--item {
   position: relative;
+  top: 20px;
   margin: 4px;
   margin-left: 20px;
   padding: 5px 8px;
-  height: 24px;
+  height: 100%;
   text-align: center;
   line-height: 100%;
   cursor: pointer;
+}
+
+.nav__links--item:hover .dropdown_menu {
+  display: block;
 }
 
 .nav__links--item.cover:hover {
   color: #1a73e8;
 }
 
+.nav__links--right,
+.nav__links--left {
+  height: 70px;
+  margin: 0;
+}
+
 .nav__entrance__button {
   margin: 4px;
+  margin-top: 22px;
   width: 80px;
   height: 30px;
   text-align: center;
@@ -226,17 +285,19 @@ p {
   color: var(--color-light-white);
   position: relative;
   border-bottom: 100px;
-  background: url(imgs/mountain.jpg) no-repeat center center fixed;
+  background: url(imgs/home-background.png) no-repeat center center fixed;
   background-size: cover;
 }
 
 .summary__description {
   position: relative;
+  bottom: 300px;
 }
 
 .summary__title {
-  max-width: 600px;
+  width: 600px;
   margin-bottom: 50px;
+  color:var(--color-grey);
 }
 
 .summary__entrance {
@@ -246,18 +307,29 @@ p {
   height: 40px;
   text-align: center;
   line-height: 40px;
-  border: 1px solid var(--color-white);
+  border: 1px solid var(--color-dark-pink);
   color: var(--color-white);
   font-size: 16px;
   font-weight: 200;
-  border-radius: 0;
+  border-radius: 3px;
   letter-spacing: 1px;
   transition: all var(--animation-duration) ease-in;
+  background-color: var(--color-dark-pink);
+  margin-right:20px;
 }
 
 .summary__entrance:hover {
-  background-color: #1a73e8;
-  font-size: 18px;
+  background-color: #f15651;
+  width: 135px;
+  height: 45px;
+  
+  /* font-size: 18px; */
+}
+.summary__penguin{
+  position: relative;
+  bottom:100px;
+  width: 300px;
+  height: 300px;
 }
 
 /* About */
@@ -353,12 +425,11 @@ p {
 /* 메뉴바 */
 #navbar__home {
   width: 100%;
-  height: 60.55px;
+  height: 70px;
   display: flex;
   color: var(--color-white);
   background-color: rgba(0, 0, 0, 0.3);
   align-items: center;
-  padding: 10px;
   padding-right: 30px;
   border-bottom: 1.5px solid var(--color-white);
   color: rgba(255, 255, 255, 1);
@@ -367,12 +438,11 @@ p {
 
 #navbar__main {
   width: 100%;
-  height: 60.55px;
+  height: 70px;
   display: flex;
   color: var(--color-white);
   background-color: var(--color-pink);
   align-items: center;
-  padding: 10px;
   padding-right: 30px;
   border-bottom: 1.5px solid var(--color-white);
   color: rgba(255, 255, 255, 1);
@@ -656,6 +726,535 @@ p {
 
 /* <--- activity */
 
+/* puzzle ---> */
+#puzzle {
+  margin-top: 30px;
+}
+
+#puzzle__container {
+  width: 920px;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: white;
+}
+
+#puzzle__title__container {
+  width: 920px;
+  height: 90px;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: white;
+}
+
+
+#pieceContainer {
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  float: left;
+  text-align: center;
+  font-size: var(--font-small);
+  line-height: 400px;
+  position: relative;
+  margin-left: 25px;
+}
+
+#puzzleContainer {
+  width: 402px;
+  height: 402px;
+  border: 1px solid black;
+  float: right;
+  margin-right: 25px;
+}
+
+.puzzle__button__container{
+  width: 420px;
+  display: flex;
+}
+
+
+.area__select {
+  height: 30px;
+  margin: 21px 200px;
+}
+
+
+#puzzle__container ul {
+  text-align: center;
+}
+
+
+.puzzle_buttons {
+  width: 100px;
+  border: 1px solid var(--color-blue);
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  margin:0px 165px;
+  color: white;
+  background-color: rgb(112 , 170, 222);
+}
+
+.puzzle_buttons:hover {
+  background-color:  rgb(86, 153, 211);
+}
+
+#btnReset {
+  display: none;
+}
+
+.piece {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: var(--puzzle-url);
+  background-repeat: no-repeat;
+}
+
+.puzzle__title {
+  color: black;
+  text-align: center;
+  margin: 0px 0px;
+}
+
+.puzzle__items {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.puzzle__item {
+  border: 1.5px solid;
+}
+
+
+/* <--- puzzle */
+
+/* population_chart ---> */
+
+#chart{
+  height: 100vh;
+  padding-top:30px;
+  padding-bottom:0px;
+}
+
+.popu__section__container {
+  min-width: 900px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.popu__summary__top {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0px;
+}
+
+
+
+
+
+.popu__summary__end {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.population__title__text{
+  font-size: 30px;
+  font-weight: var(--weight-bold);
+}
+
+.population__title{
+  position:relative;
+}
+
+.population__title,
+.average__age,
+.aging__rate {
+  cursor: pointer;
+  border: 1.5px solid blanchedalmond;
+  padding: 0px 10px;
+}
+
+
+
+.population__title:hover {
+  border : 1.5px solid var(--color-blue);
+  border-radius: var(--size-border-radius);
+}
+
+.average__age:hover {
+  border : 1.5px solid var(--color-blue);
+  border-radius: var(--size-border-radius);
+}
+
+.aging__rate:hover {
+  border : 1.5px solid var(--color-blue);
+  border-radius: var(--size-border-radius);
+}
+
+.average__age__text,
+.aging__rate__text {
+  font-size: 20px;
+  font-weight: var(--weight-bold);
+  padding-top: 10px;
+}
+
+.population__year {
+  font-size: 40px;
+  font-weight: var(--weight-bold);
+}
+
+.population__year__arrow{
+  display:flex;
+  flex-direction: column;
+}
+
+.popup__chart{
+  width:800px;
+  height: 600px;
+  position:absolute;
+  top:150px;
+  border:1px solid var(--color-black);
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  border-radius: 5px;
+  /* z-index: 1; */
+  cursor: default;
+}
+
+#popup1{
+  left:240px;
+}
+
+.popup__average__age{
+  left:-100px;
+}
+
+
+
+
+.popup__chart__navbar{
+  display:flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 20px;
+  border-bottom: 1px solid var(--color-black);
+  cursor: move;
+  background-color: rgb(224, 222, 222);
+}
+
+.popup__close{
+  margin-right:5px;
+  border:0px 5px;
+  cursor: pointer;
+}
+
+.popup__close:hover{
+  color:red;
+}
+
+
+
+
+
+.male,
+.female {
+  position:relative;
+  bottom:420px;
+  font-weight: var(--weight-bold);
+  font-size: 50px;
+}
+
+.male {
+  color: blue;
+  left:20px;
+}
+
+.female {
+  color: red;
+  right:20px;
+}
+
+.population__title__value {
+  color:red;
+  font-size: 30px;
+  font-weight: var(--weight-semi-bold);
+}
+
+.average__age__value,
+.aging__rate__value {
+  font-size: 20px;
+  font-weight: var(--weight-semi-bold);
+}
+
+.population__chart__container{
+  width: 100%;
+  display: flex;
+  background-color: blanchedalmond;
+  padding: 20px 0px;
+}
+
+
+.population__chart__left{
+  margin-top: 0.5px;
+  flex-basis: 47.5%;
+}
+
+.population__chart__right{
+
+  flex-basis: 47.5%;
+}
+
+.population__chart__mid{
+  flex-basis: 5%;
+}
+
+.population__bar__left,
+.population__bar__right{
+  display: flex;
+  width: 100%;
+  margin: 3px 0px;
+}
+
+.population__bar__left{
+  justify-content: flex-end;
+}
+
+
+.population__bar__value
+{
+  width: 23%;
+  height: 30px;
+  margin: 3px 0px;
+  background-color: blue;
+}
+
+.population__bar__age_1{
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  margin:3px 0px;
+  color: rgb(153, 153, 153);
+  font-weight: var(--weight-bold);
+}
+
+.bar_right{
+  background-color: red;
+}
+
+
+
+.population__bar__age{
+  font-size: 20px;
+  position:relative;
+  left:36px;
+  color: white;
+}
+
+#number{
+  color:black;
+}
+
+/* .popu__summary__end__mid {
+  position:relative;
+} */
+
+.population__chart__start,
+.population__chart__stop,
+.population__chart__resume
+{
+  /* bottom:40px;
+  left:150px;
+  position:relative; */
+  width: 90px;
+  border: 1px solid var(--color-blue);
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left:10px;
+  color: white;
+  background-color: rgb(112 , 170, 222);
+}
+
+.chart__button__container{
+  bottom:40px;
+  left:185px;
+  position:relative;
+}
+
+/* .population__chart__resume
+{
+  bottom:40px;
+  left:100px;
+  position:relative;
+  width: 90px;
+  border: 1px solid var(--color-blue);
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 5px;
+  margin:0px 165px;
+  color: white;
+  background-color: rgb(112 , 170, 222);
+} */
+
+
+.population__chart__start:hover {
+  background-color:  rgb(86, 153, 211);
+}
+
+.population__chart__stop:hover {
+  background-color:  rgb(86, 153, 211);
+}
+
+.population__chart__resume:hover{
+  background-color:  rgb(86, 153, 211);
+}
+
+.population__volume{
+  position:relative;
+  right:380px;
+  bottom:78px;
+}
+
+.material-icons {
+  font-size: 43px;
+  color: grey;
+  cursor:pointer;
+}
+
+.material-icons:hover {
+  color:var(--color-pink);
+}
+
+.population__year__arrow{
+  text-align: center;
+  margin:auto;
+  width:32px;
+  position:relative;
+  left:62px;
+  bottom:132px;
+  
+}
+
+.population__year__arrow__icon{
+  font-size: 32px;
+  
+}
+
+/* 펭귄 대사 */
+.gamerule {
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  min-height: 220px;
+  height: 220px;
+  background: rgba(0, 0, 0, 0.7);
+  left: 0;
+  bottom: 0;
+  color: #fff;
+}
+
+.script__arrow__container{
+  display: flex;
+  position: relative;
+  left: 91%;
+  bottom: 30px;
+  color: black;
+  margin: 0 auto;
+}
+
+.script__arrow__down,
+.script__arrow__up
+{
+  width:100px;
+  border:1px solid var(--color-grey);
+  border-radius: 3px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: white;
+  cursor:pointer;
+}
+
+
+
+.character {
+  position:relative;
+  right:5%;
+  bottom:50px;
+  width: 250px;
+  height: 250px;
+}
+
+.script__container{
+  margin-left: 15px;
+  margin-top: 10px;
+  width:100%;
+}
+
+.script{
+  font-size: var(--font-medium);
+  display: flex;
+  text-align: left;
+  width:80%;
+  height: 110px;
+}
+
+.script__button__box,
+.skip__button__box{
+  display: flex;
+  width:100%;
+  justify-content: flex-end;
+}
+
+.script_button{
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background: salmon;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  width: 150px;
+}
+
+.skip__button,
+.back__button{
+  text-align: center;
+  line-height: 50px;
+  margin-left: 5px;
+  margin-right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.skip__button{
+  pointer-events: none;
+}
+
+.skip__animation{
+  animation: skipAnimation 2.5s linear infinite;
+  pointer-events: auto;
+}
+
+
+
+
+
+
+
+
+
+
+/* <--- population_chart */
+
 /* For below 1180px screen width */
 @media (max-width: 1180px) {
   #summary {
@@ -710,3 +1309,4 @@ p {
     flex-direction: column;
   }
 }
+
