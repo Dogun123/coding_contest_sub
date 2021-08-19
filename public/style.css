@@ -52,7 +52,7 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--color-white);
+  color: red;
 }
 
 ul {
@@ -842,6 +842,12 @@ p {
   padding-bottom:0px;
 }
 
+#chart__predict{
+  height: 100vh;
+  padding-top:30px;
+  padding-bottom:0px;
+}
+
 .popu__section__container {
   min-width: 900px;
   max-width: 900px;
@@ -958,6 +964,41 @@ p {
 .popup__close:hover{
   color:red;
 }
+
+
+
+.aging__level{
+  display:flex;
+  flex-direction: column;
+  position:relative;
+  bottom:490px;
+  left:95px;
+  width:676px;
+  height: 420px;
+  z-index:1;
+}
+
+.super__old{
+  flex-basis: 20%;
+  background-color: rgba(250, 36, 36, 0.3);
+
+}
+
+.very__old{
+  flex-basis: 24%;
+  background-color: rgb(248, 245, 61,0.3);
+
+}
+
+.old{
+  flex-basis: 54%;
+  background-color: rgba(73, 235, 33, 0.3);
+
+}
+
+
+
+
 
 
 
@@ -1195,10 +1236,21 @@ p {
 }
 
 .script__container{
+  
   margin-left: 15px;
   margin-top: 10px;
   width:100%;
 }
+
+.script__button__container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  height: 48px;
+}
+
+
 
 .script{
   font-size: var(--font-medium);
@@ -1212,18 +1264,120 @@ p {
 .skip__button__box{
   display: flex;
   width:100%;
+}
+
+
+.skip__button__box{
   justify-content: flex-end;
 }
 
+
 .script_button{
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
+  margin: 0 2rem;
   color: #fff;
   background: salmon;
   border: none;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 17px;
   width: 150px;
 }
+
+.script_button1,
+.script_button2,
+.script_button3,
+.script_button4{
+  padding: 0.5rem 1.0rem;
+  padding-top: 0;
+  margin: 0 2rem;
+  color: #fff;
+  background: salmon;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+  width: 150px;
+}
+
+.script_input{
+  font-size: 20px;
+  width:70px;
+  text-align: center;
+}
+
+.script_button1:hover{
+  background:rgb(247, 102, 86)
+}
+.script_button2:hover{
+  background:rgb(247, 102, 86)
+}
+.script_button3:hover{
+  background:rgb(247, 102, 86)
+}
+.script_button4:hover{
+  background:rgb(247, 102, 86)
+}
+
+.hint_button:hover{
+  background: rgb(139, 82, 197);
+}
+
+.hint_container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: wheat;
+  padding: 13px 25px;
+  padding-bottom: 10px;
+  top:270px;
+  left:50px;
+  border-radius: 5px;
+  border: 3px dashed var(--color-dark-grey);  
+}
+
+.hint{
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+
+
+.hint__close{
+  display: flex;
+  justify-content: flex-end;
+  cursor:pointer;
+  font-weight: var(--weight-semi-bold);
+}
+
+.hint__close:hover{
+  color:var(--color-blue);
+}
+
+.hint_button{
+  padding: 0.5rem 0.5rem;
+  margin: 0 2rem;
+  color: #fff;
+  background: #9966cc;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+  width: 100px;
+}
+
+/* .hint_button {
+  padding: 0.5rem 0.5rem;
+  color: #fff;
+  background: #9966cc;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+  margin: 0px 50px;
+} */
+
+
 
 .skip__button,
 .back__button{
@@ -1236,13 +1390,15 @@ p {
 }
 
 .skip__button{
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .skip__animation{
-  animation: skipAnimation 2.5s linear infinite;
   pointer-events: auto;
+  animation: skipAnimation 2.5s linear infinite;
+  
 }
+
 
 
 
@@ -1256,7 +1412,7 @@ p {
 /* <--- population_chart */
 
 /* For below 1180px screen width */
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   #summary {
     padding-left: 10;
     padding-right: 0;
@@ -1264,6 +1420,30 @@ p {
   .summary__title {
     max-width: 800px;
   }
+
+  .script_button1,
+  .script_button2,
+  .script_button3,
+  .script_button4{
+    padding: 0.5rem 0.5rem;
+    margin: 0 0.7rem;
+    color: #fff;
+    background: salmon;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    width: 100px;
+  }
+  
+  .hint_button{
+    font-size: 13px;
+    width:70px;
+  }
+
+  .script{
+    font-size: 20px;
+  }
+
 }
 
 @media screen and (max-width: 768px) {

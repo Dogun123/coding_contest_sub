@@ -1,4 +1,3 @@
-// const e = require("express")
 
 const female_data = [{"year":1950,"sex":"female","0s":3400.9269999999997,"10s":2439.044,"20s":1793.644,"30s":1557.717,"40s":1151.434,"50s":724.566,"60s":552.982,"70s":236.086,"80s":69.581,"90s":14.638},{"year":1955,"sex":"female","0s":3619.7619999999997,"10s":2613.5640000000003,"20s":2085.741,"30s":1751.373,"40s":1294.461,"50s":795.146,"60s":584.236,"70s":314.44,"80s":81.64099999999999,"90s":13.063},{"year":1960,"sex":"female","0s":4210.927,"10s":3026.559,"20s":2205.8810000000003,"30s":2048.514,"40s":1523.058,"50s":931.033,"60s":596.27,"70s":379.818,"80s":113.286,"90s":8.922},{"year":1965,"sex":"female","0s":4243.037,"10s":3808.154,"20s":2424.678,"30s":2163.923,"40s":1753.747,"50s":1029.807,"60s":676.553,"70s":420.86,"80s":161.21,"90s":13.79},{"year":1970,"sex":"female","0s":4157.187,"10s":4369.921,"20s":2871.998,"30s":2382.42,"40s":2030.4209999999998,"50s":1212.473,"60s":813.942,"70s":449.33000000000004,"80s":202.504,"90s":19.715},{"year":1975,"sex":"female","0s":4156.992,"10s":4367.989,"20s":3615.786,"30s":2785.62,"40s":2133.021,"50s":1412.848,"60s":919.885,"70s":535.494,"80s":237.767,"90s":40.115},{"year":1980,"sex":"female","0s":3910.867,"10s":4307.766,"20s":4167.432,"30s":3519.529,"40s":2318.5460000000003,"50s":1648.789,"60s":1102.125,"70s":658.636,"80s":263.38800000000003,"90s":55.574000000000005},{"year":1985,"sex":"female","0s":3844.693,"10s":4067.8959999999997,"20s":4251.1900000000005,"30s":4136.187,"40s":2734.181,"50s":1914.1999999999998,"60s":1297.229,"70s":753.0550000000001,"80s":323.873,"90s":72.827},{"year":1990,"sex":"female","0s":3448.4359999999997,"10s":3777.096,"20s":4306.642,"30s":4262.9490000000005,"40s":3516.031,"50s":2057.111,"60s":1536.473,"70s":927.1569999999999,"80s":404.442,"90s":81.886},{"year":1995,"sex":"female","0s":3627.172,"10s":3308.1490000000003,"20s":4084.1639999999998,"30s":4306.217000000001,"40s":4120.521,"50s":2260.7380000000003,"60s":1807.175,"70s":1116.504,"80s":485.89599999999996,"90s":112.709},{"year":2000,"sex":"female","0s":3511.076,"10s":3086.7439999999997,"20s":3789.712,"30s":4106.358,"40s":4258.65,"50s":2676.185,"60s":1967.273,"70s":1358.48,"80s":629.657,"90s":147.561},{"year":2005,"sex":"female","0s":3202.788,"10s":3141.5,"20s":3294.524,"30s":3780.05,"40s":4340.464,"50s":3457.727,"60s":2187.006,"70s":1636.732,"80s":791.45,"90s":183.575},{"year":2010,"sex":"female","0s":3116.4700000000003,"10s":2711.077,"20s":3074.091,"30s":3234.365,"40s":4056.768,"50s":4070.866,"60s":2608.88,"70s":1825.042,"80s":1040.012,"90s":274.63699999999994},{"year":2015,"sex":"female","0s":3112.982,"10s":2287.4139999999998,"20s":3158.298,"30s":3176.818,"40s":3739.1620000000003,"50s":4255.34,"60s":3360.248,"70s":2075.96,"80s":1327.059,"90s":390.561},{"year":2020,"sex":"female","0s":2942.7110000000002,"10s":2199.989,"20s":2720.322,"30s":3162.306,"40s":3371.739,"50s":4254.519,"60s":3997.2709999999997,"70s":2459.549,"80s":1577.598,"90s":561.319}]
 
@@ -38,8 +37,8 @@ chartResume.style.pointerEvents = "none"
 
 let activate = true;
 var audio = new Audio('/music/BattleofKings.mp3');
-audio.volume = 0;
-      
+audio.volume = 0;      
+
 
 function chart_start(){
   activate = true;
@@ -74,11 +73,6 @@ function chart_start(){
   delayTotal(yearNumCount);
   delayAverage(yearNumCount);
   delayAging(yearNumCount);
-
-  if(typingCount==14){
-    goNext();
-  }
-
 }
 
 
@@ -92,9 +86,6 @@ function stop() {
   chartStop.style.display = "none";
   // audio.pause();
   // audio.currentTime=0;
-  if(typingCount==11){
-    goNext();
-  }
 }
 
 function delayYear(d) {
@@ -103,18 +94,16 @@ function delayYear(d) {
     audio.currentTime=0;
     chartStop.style.display = "none";
     chartStart.style.display="";
-    chartStart.innerHTML = "처음으로";
+    chartStart.innerHTML = "처음부터";
     if(d==14&&activate==true){
       chartResume.style.opacity = '0';
       chartResume.style.pointerEvents = 'none';
     } else if(d!=14&&activate==false){
       chartResume.style.opacity = '1';
-      if(typingCount!=12){
-        chartResume.style.pointerEvents = 'auto';
-      }
+      chartResume.style.pointerEvents = 'auto';
+      console.log('hi')
     };
 
-    
     dropUp.style.display = "";
     dropDown.style.display = "";
     yearNumCount=(Number(year.innerHTML)-1950)/5;
@@ -159,7 +148,7 @@ function delayPop(order,age,sex,pos) {
 }
 
 chartStart.addEventListener('click',()=>{
-  if(chartStart.innerHTML=="처음으로"){
+  if(chartStart.innerHTML=="처음부터"){
     yearNumCount=0;
     chartStart.innerHTML="시작하기"
     dropUp.style.opacity="1"
@@ -171,13 +160,7 @@ chartStart.addEventListener('click',()=>{
   } else{
     chart_start()
   }
-
-  if(typingCount==9){
-    goNext();
-  }
 })
-
-
 
 
 
@@ -241,8 +224,8 @@ function countYear(counting) {
 };
 
 function countTotal(counting) {
-  let startNum = Math.floor(total_data[counting]/10),
-  endNum = Math.floor(total_data[counting+1]/10),
+  let startNum = total_data[counting]*1000,
+  endNum = total_data[counting+1]*1000,
   deltaNum = (endNum - startNum) / (1000 / resolutionMS) /nSecond;
   console.log(startNum);
   var handle = setInterval(() => {
@@ -250,7 +233,7 @@ function countTotal(counting) {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     });
-    total.innerHTML = x.toString()+"만";
+    total.innerHTML = x.toString();
     
     // if already updated the endNum, stop
     if (startNum >= endNum) clearInterval(handle);
@@ -261,9 +244,9 @@ function countTotal(counting) {
 };
 
 
-function countAverage(counting) {
-  let startNum = averageage_data[counting]*10,
-  endNum = averageage_data[counting+1]*10,
+function countTotal(counting) {
+  let startNum = Math.floor(total_data[counting]/10),
+  endNum = Math.floor(total_data[counting+1]/10),
   deltaNum = (endNum - startNum) / (1000 / resolutionMS) /nSecond;
   console.log(startNum);
   var handle = setInterval(() => {
@@ -271,10 +254,7 @@ function countAverage(counting) {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     });
-    natNum=x.substr(0,2);
-    decNum=x.substr(2,1);
-    averageAge.innerHTML = natNum+"."+decNum;
-    // averageAge.innerHTML = x.toString();
+    total.innerHTML = x.toString()+"만";
     
     // if already updated the endNum, stop
     if (startNum >= endNum) clearInterval(handle);
@@ -345,10 +325,6 @@ dropUp.addEventListener('click',()=>{
   year.innerHTML = yearNum.toString();
   console.log(yearNumCount);
   eachYearChart(yearNumCount);
-
-  if(typingCount==7){
-    goNext();
-  }
 })
 
 dropDown.addEventListener('click',()=>{
@@ -363,10 +339,6 @@ dropDown.addEventListener('click',()=>{
   year.innerHTML = yearNum.toString();
   console.log(yearNumCount);
   eachYearChart(yearNumCount);
-
-  if(typingCount==7){
-    goNext();
-  }
 })
 
 function eachYearChart(x) {
@@ -458,6 +430,7 @@ chart[19].style.width = Math.floor(female_data[0]["0s"]*1000)/58000 + '%'
 total.innerHTML = (Math.floor(total_data[0]/10)).toString()+"만";
 averageAge.innerHTML = averageage_data[0].toFixed(1);
 aging.innerHTML = (aging_data[0].toFixed(1)).toString()+"%";
+
 
 
 // 팝업차트 
@@ -603,7 +576,7 @@ function drawBasicAv() {
 
       data.addRows([
         ['1950',19.0],['1955',18.9],['1960',18.6],['1965',18.4],['1970',19.0],['1975',19.9],['1980',22.1],['1985',24.3],
-        ['1990',27.0],['1995',29.3],['2000',31.9],['2005',34.8],['2010',38.0],['2015',40.8],['2020',43.7]
+        ['1990',27.0],['1995',29.3],['2000',31.9],['2005',34.8],['2010',38.0],['2015',40.8],['2020',43.7],['2030(전망)',47.6]
       ]);
 
       var options = {
@@ -648,7 +621,7 @@ function drawBasicAv() {
     
       data.addRows([
         ['1950',1921],['1955',2151],['1960',2533],['1965',2889],['1970',3219],['1975',3537],['1980',3804],['1985',4080],
-        ['1990',4291],['1995',4529],['2000',4737],['2005',4870],['2010',4954],['2015',5082],['2020',5126]
+        ['1990',4291],['1995',4529],['2000',4737],['2005',4870],['2010',4954],['2015',5082],['2020',5126],['2030(전망)',5192]
       ]);
     
       
@@ -695,7 +668,7 @@ function drawBasicAv() {
     
       data.addRows([
         ['1950',3.0],['1955',3.4],['1960',3.5],['1965',3.6],['1970',3.6],['1975',3.9],['1980',4.3],['1985',4.7],
-        ['1990',5.5],['1995',6.4],['2000',7.7],['2005',9.7],['2010',12.0],['2015',14.8],['2020',18.8]
+        ['1990',5.5],['1995',6.4],['2000',7.7],['2005',9.7],['2010',12.0],['2015',14.8],['2020',18.8],['2030(전망)',25.0]
       ]);
     
     
@@ -733,14 +706,14 @@ function drawBasicAv() {
       chart.draw(data, options);
       window.addEventListener('resize',drawBasicAging,false);
     }
-    
 
-
-
-
-// 스크립트 버튼
+    // 스크립트 버튼
 const skipButton=document.querySelector(".skip__button");
-const scriptButton = document.querySelector(".script_button");
+const scriptButton1 = document.querySelector(".script_button1");
+const scriptButton2 = document.querySelector(".script_button2");
+const scriptButton3 = document.querySelector(".script_button3");
+const scriptButton4 = document.querySelector(".script_button4");
+const hintButton = document.querySelector(".hint_button");
 const backButton=document.querySelector(".back__button");
 const popuTop=document.querySelector('.popu__summary__top');
 const averageAgeBox=document.querySelector('.average__age');
@@ -749,14 +722,30 @@ const scriptArrowContainer=document.querySelector('.script__arrow__container');
 const yearArrow=document.querySelector('.population__year__arrow');
 
 
-scriptButton.style.opacity='0';
-scriptButton.style.pointerEvents='none';
+// skipButton.style.pointerEvents="none";
+// 컨테이너 보이게,안보이게
+function invisible(i){
+  i.style.opacity='0'
+  i.style.pointerEvents='none'
+}
+function visible(i){
+  i.style.opacity='1'
+  i.style.pointerEvents='auto'
+}
+
+
+invisible(scriptButton1);
+invisible(scriptButton2);
+invisible(scriptButton3);
+invisible(scriptButton4);
+invisible(backButton);
+invisible(hintButton);
 
 // 스크립트 접기,펼치기
 const scriptFold=document.querySelector('.script__arrow__down');
 const scriptOpen=document.querySelector('.script__arrow__up');
 const scriptContainer=document.querySelector('.gamerule');
-
+const popuSectionContainer=document.querySelector('.popu__section__container');
 scriptOpen.style.display='none';
 
 scriptFold.addEventListener('click',()=>{
@@ -782,246 +771,259 @@ scriptOpen.addEventListener('click',()=>{
   }
 
 })
-
-// 타이핑 효과
-const content =["안녕 나는 펭두야!","지금부터 우리가 사용하게 될 인구 피라미드 차트 사용방법을 알려줄게.","이 부분은 연도별 '평균연령', '총 인구수', '고령화 비율'을 보여줘."
-,"지금은 1950년도의 자료를 나타내고 있어.","박스 안의 텍스트를 클릭하면 각각의 그래프를 확인할 수 있어. ",
-"예를 들어 '총인구' 텍스트를 클릭하면 대한민국 총 인구수 변화를 나타내는 선 그래프가 나와!","이제 인구 피라미드 조작법에 대해 알아보자!",
-"아래에 보이는 화살표를 누르면 원하는 년도의 인구 피라미드 그래프를 볼 수 있어. 한번 눌러봐!","잘 했어! 그래프가 바뀌는게 보이지?",
-"다음으로 '시작하기'버튼을 클릭해봐!","우와! 그래프가 움직이지?","이제 '중단하기'를 눌러서 움직이는 그래프를 정지시켜 보자!","자! '중단하기'를 클릭하면 이렇게 두 개의 버튼이 생겨.",
-"'처음으로'를 클릭하면 처음 상태인 1950년 그래프로 돌아가고 '이어하기'를 클릭하면 정지한 시점부터 애니메이션을 다시 시작할 수 있어!","그럼 마지막으로 '이어하기'를 클릭해 보자.","그래프가 이어서 진행되는게 보이지?!!","이제 인구 피라미드 튜토리얼이 끝났어~","그럼 이제 본격적으로 사이트를 이용해 볼까?"];
-const text = document.querySelector(".script");
-const chartSection = document.querySelector("#chart");
-const chartTop = document.querySelector(".popu__summary__top");
-
-let index = 0;
-let isStop = false;
-
-
-let typingCount = 0;
-
-function typing(){
-  if(index<content[typingCount].length){
-    text.textContent += content[typingCount][index++]
-  } else{
-    skipButton.classList.add('skip__animation');
-    clearInterval(typing);
     
-  }
-// 바로넘어가기 방지(버튼을 눌렀을때만 넘어가도록)
-  if(typingCount==7 || typingCount==9 || typingCount==11 ||typingCount==14 ||typingCount==17){
-    skipButton.classList.remove('skip__animation');
-  }
-  // if(typingCount==17){
-  //   skipButton.style.opacity='0';
-  //   skipButton.style.pointerEvents="none"
-  // } else{
-  //   skipButton.style.opacity='1';
-  //   skipButton.style.pointerEvents="auto"
-  // }
-  console.log(typingCount);
-}
+
+    const content =["얘들아 안녕?/나는 펭두야!","내가 너희들의 선생님이 되어서 우리나라의 인구 구성에 대해 알려주려고 해.","그럼 이제 시작해 볼까?","좋은 생각이야!/그런데 내가 중간 중간에 너희들에게 문제를 낼거야.","여기 보이는 화면 안의 기능을 잘 활용하면에 답을 구할 수 있을거야!","먼저 '인구'란 무엇일까?","인구란 한 나라 또는 일정한 지역에 사는 사람의 수를 의미해.","그러면 '대한민국 인구'는 무엇을 의미할까?","음.. 다시 풀어볼까?","오! 제법하는데?","그런데 말이야/한국에서는 요즘 아기를 잘 낳지 않아서 저출산 문제가 심각하다며?","내가 알고있는 60살 할아버지는 초등학생때 한 반에 50명이나 있었다는데.. 너희 반에는 학생이 몇 명이나 있어?"];
 
 
-function goNext(){
-  skipButton.classList.remove('skip__animation')
-  index=0;
-  text.textContent = "";
-  typingCount++;
-  setInterval(typing, 100);
-  typingAnimation();
-}
 
-function goBack(){
-  skipButton.classList.remove('skip__animation')
-  index=0;
-  text.textContent="";
-  if(typingCount>=10){
-    activate=false;
-    typingCount=9;
-    chartStop.style.display = "none";
-    chartStart.style.display="";
-    chartStart.innerHTML="시작하기"
-    dropUp.style.opacity="1"
-    dropDown.style.opacity="1"
-    chartResume.style.opacity = "0";
-    chartResume.style.pointerEvents = "none"
-    yearNumCount=0;
-    year.innerHTML = 1950;
-    eachYearChart(0);
-  } else{
-    typingCount--;
-  }
-  setInterval(typing, 100);
-  typingAnimation();
-}
+    
+    const text = document.querySelector(".script");
+    const chartSection = document.querySelector("#chart");
+    const chartTop = document.querySelector(".popu__summary__top");
+    const retry = "다시 풀기";
+    let index = 0;
+    const speed = 60;
+    const speedSlow = 400;    
+    let typingCount = 0;
 
 
-setInterval(typing, 100);
+    function typing(){
+      // if(index<content[typingCount].length){
+      //   if(content[typingCount][index]=="/"){
+      //     var a = document.createElement('br')
+      //     text.append(a)
+      //     index++
+      //   }
+      //   text.textContent += content[typingCount][index++]
+      // } else{
+      //   skipButton.classList.add('skip__animation');
+      //   clearInterval(typing);
+      // }
+    // 바로넘어가기 방지(버튼을 눌렀을때만 넘어가도록)
+      
+    if(index<content[typingCount].length){
+      if(content[typingCount][index]=="/"){
+        var a = document.createElement('br');
+        text.append(a)
+        index++
+        setTimeout(typing, speedSlow);
+        } else{
+          text.append(content[typingCount][index])
+          index++
+          setTimeout(typing,speed);
+        }
+      } else{
+          skipButton.classList.add('skip__animation');
+          typingAnimation()
+      }
+    }
 
-skipButton.addEventListener('click',()=>{
-  if(typingCount!=7){
-    goNext();
-  }
-  
-})
+    
+    function goNext(){
+      // skipButton.classList.remove('skip__animation')
+      // index=0;
+      // text.textContent = "";
+      // typingCount++;
+      // setInterval(typing, 100);
+      // console.log(typingCount);
+      // typingAnimation();
 
-backButton.addEventListener('click',()=>{
-  goBack();
-})
+      skipButton.classList.remove('skip__animation')
+      index=0;
+      text.textContent = "";
+      typingCount++;
+      console.log(typingCount);
+      setTimeout(typing, speed);
+      typingAnimation();
+    }
+    
+    function goBack(){
+      // skipButton.classList.remove('skip__animation')
+      // index=0;
+      // text.textContent="";
+      // typingCount--;
+      // setInterval(typing, 100);
+      // console.log(typingCount);
 
-// 버튼 기능 비활성화
-populationTitle.style.pointerEvents="none";
-averageAgeContainer.style.pointerEvents="none";
-agingContainer.style.pointerEvents="none";
-dropUp.style.pointerEvents="none";
-dropDown.style.pointerEvents="none";
-chartStart.style.pointerEvents="none";
-chartResume.style.pointerEvents="none";
-chartStop.style.pointerEvents="none";
+      // typingAnimation();
+      skipButton.classList.remove('skip__animation')
+      index=0;
+      text.textContent="";
+      typingCount--;
+      console.log(typingCount);
+      setTimeout(typing, speed);
+      typingAnimation()
+    }
+    
+    function right(){
+      skipButton.classList.remove('skip__animation')
+      index=0;
+      text.textContent="";
+      typingCount=typingCount+2;
+      setTimeout(typing, speed);
+      console.log(typingCount);
+      typingAnimation();
+    }
 
-function typingAnimation(){
-  if(typingCount==2 || typingCount==3 || typingCount==4 || typingCount==5){
-    chartTop.style.backgroundColor="white";
-  } else{
-    chartTop.style.backgroundColor="blanchedalmond";
-  }
+    // setInterval(typing, 100);
+    
+    setTimeout(typing, speed);
+    
+    // 넘어가기,뒤로가기
+    skipButton.addEventListener('click',()=>{
+        goNext();
+    })
+    
+    backButton.addEventListener('click',()=>{
+        goBack();
+    })
 
-  if(typingCount==2 || typingCount==3){
-    popuTop.classList.add('blink__animation');
-  } else{
-    popuTop.classList.remove('blink__animation');
-  }
+    scriptButton1.addEventListener('click',()=>{
+      if(typingCount==2 || typingCount==7){
+        goNext();
+      } else if(typingCount==8){
+        goBack();
+      }
 
-  if(typingCount==4){
-    averageAgeBox.classList.add('blink__animation');
-    agingContainer.classList.add('blink__animation');
-    populationTitle.classList.add('blink__animation');
-  } else{
-    averageAgeBox.classList.remove('blink__animation');
-    agingContainer.classList.remove('blink__animation');
-    populationTitle.classList.remove('blink__animation');
-  }
+    })
 
-  if(typingCount==5){
-      populationTitle.classList.add('blink__animation');
-      setTimeout(()=>{
-      popupTotal.style.display ='';
-      google.charts.setOnLoadCallback(drawBasicTotal);
-    },1000); 
-  } else{
-    popupTotal.style.display ='none';
-  }
+    scriptButton2.addEventListener('click',()=>{
+      if(typingCount==7){
+        goNext();
 
-  if(typingCount>=6){
-    scriptUp();
-  } else{
-    scriptDown();
-  }
+      }
+    })
 
-  if(typingCount==7 || typingCount==8){
-    yearArrow.classList.add('blink__animation');
-  } else{
-    yearArrow.classList.remove('blink__animation');
-  }
+    scriptButton3.addEventListener('click',()=>{
+      if(typingCount==7){
+        right();
+      }
+    })
 
-  if(typingCount==9 || typingCount==12 || typingCount==13){
-    chartStart.classList.add('blink__animation');
-  } else{
-    chartStart.classList.remove('blink__animation');
-  }
+    scriptButton4.addEventListener('click',()=>{
+      if(typingCount==7){
+        goNext();
+      }
+    })
+    
+    // 버튼 기능 비활성화
+    
+    function typingAnimation(){
+      // 다음버튼 보이기여부 
+      if(typingCount==2 || typingCount==7){
+        skipButton.style.opacity='0';
+      } else{
+        skipButton.style.opacity='1';
+      }
 
-  if(typingCount==11){
-    chartStop.classList.add('blink__animation');
-  } else {
-    chartStop.classList.remove('blink__animation');
-  }
+      // 버튼1 보이기여부
+      if(typingCount==2 || typingCount==7){
+        visible(scriptButton1);
+      } else if(typingCount==8){
+        visible(scriptButton1);
+      }
+      else{
+        invisible(scriptButton1);
+      }
 
-  if(typingCount==12 || typingCount==13 ||typingCount==14){
-    chartResume.classList.add('blink__animation')
-  } else{
-    chartResume.classList.remove('blink__animation')
-  }
+      // 버튼2 보이기여부
+      if(typingCount==7){
+        visible(scriptButton2);
+      } else{
+        invisible(scriptButton2);
+      }
+      
+      // 버튼3 보이기여부
+      if(typingCount==7){
+        visible(scriptButton3);
+      } else{
+        invisible(scriptButton3);
+      }
 
-  if(typingCount==10 || typingCount==11 || typingCount==15){
-    backButton.style.opacity="0";
-    backButton.style.pointerEvents="none"
-  } else{
-    backButton.style.opacity="1";
-    backButton.style.pointerEvents="auto"
-  }
+      // 버틑4 보이기여부
+      if(typingCount==7){
+        visible(scriptButton4);
+      } else{
+        invisible(scriptButton4);
+      }
 
-  if(typingCount>=7){
-    dropUp.style.pointerEvents="auto";
-    dropDown.style.pointerEvents="auto";
-  } else{
-    dropDown.style.pointerEvents="none";
-    dropUp.style.pointerEvents="none";
-  }
+      // 버튼 텍스트값 지정
+      if(typingCount==2){
+        scriptButton1.innerHTML="네, 좋아요!"
+      } else if(typingCount==7){
+        scriptButton1.innerHTML="서울에 사는 사람의 수"
+        scriptButton2.innerHTML="일본에 사는 사람의 수"
+        scriptButton3.innerHTML="한국에 사는 사람의 수"
+        scriptButton4.innerHTML="한국에 사는 여성의 수"
+      } else if(typingCount==8){
+        scriptButton1.innerHTML="다시 풀기"
+      }
 
-  if((typingCount>=9 && typingCount<12)||typingCount>14){
-    chartStart.style.pointerEvents="auto";
-  } else{
-    chartStart.style.pointerEvents="none";
-  }
+      // hint보이기 여부
+      if(typingCount==7){
+        visible(hintButton);
+      } else {
+        invisible(hintButton);
+      }
 
-  if(typingCount>=11){
-    chartStop.style.pointerEvents="auto";
-  } else{
-    chartStop.style.pointerEvents="none";
-  }
+      // hint텍스트
+      if(typingCount==7){
+        hintText.innerHTML="인구란 한 나라 또는 일정한 지역에 사는 사람의 수이다.";
+      }
 
-  if(typingCount>=14){
-    chartResume.style.pointerEvents='auto';
-  } else{
-    chartResume.style.pointerEvents="none";
-  }
+      // 차트컨테이너 깜빡임
+      if(typingCount==4){
+        popuSectionContainer.classList.add("blink__animation");
+      } else{
+        popuSectionContainer.classList.remove("blink__animation");
+      }
 
-  if(typingCount==16){
-    stop();
-  }
-
-// 220px
-}
-
-// 스크립트 위치 위로 or 아래로
-let scriptTop = false;
-
-function scriptUp() {
-  scriptContainer.style.top='0';
-  character.style.bottom='0px';
-  scriptArrowContainer.style.bottom='-219px';
-  scriptTop = true;
-}
-
-function scriptDown() {
-  scriptContainer.style.top='';
-  character.style.bottom='50px';
-  scriptArrowContainer.style.bottom='30px';
-  scriptTop = false;
-}
+      if(hintButton.style.opacity=='0'){
+        invisible(hintContainer);
+      }
 
 
+    }
+    
+    // 스크립트 위치 위로 or 아래로
+    let scriptTop = false;
+    
+    function scriptUp() {
+      scriptContainer.style.top='0';
+      character.style.bottom='0px';
+      scriptArrowContainer.style.bottom='-219px';
+      scriptTop = true;
+    }
+    
+    function scriptDown() {
+      scriptContainer.style.top='';
+      character.style.bottom='50px';
+      scriptArrowContainer.style.bottom='30px';
+      scriptTop = false;
+    }    
 
 // 비동기 지연함수
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-// 엑셀 파일 읽기
 
-// function readExcel() {
-//   let input = event.target;
-//   let reader = new FileReader();
-//   reader.onload = function () {
-//       let data = reader.result;
-//       let workBook = XLSX.read(data, { type: 'binary' });
-//       workBook.SheetNames.forEach(function (sheetName) {
-//           console.log('SheetName: ' + sheetName);
-//           let rows = XLSX.utils.sheet_to_json(workBook.Sheets[sheetName]);
-//           console.log(JSON.stringify(rows));
-//       })
-//   };
-//   reader.readAsBinaryString(input.files[0]);
-// }
+
+// 힌트
+const hintContainer = document.querySelector(".hint_container");
+const hintText = document.querySelector('.hint');
+const hintClose = document.querySelector('.hint__close');
+
+
+invisible(hintContainer);
+
+hintButton.addEventListener('click',()=>{
+  visible(hintContainer);
+})
+
+hintClose.addEventListener('click',()=>{
+  invisible(hintContainer);
+})
+
 

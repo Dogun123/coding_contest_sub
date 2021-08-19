@@ -14,7 +14,7 @@
         @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
     </style>
     <link rel="stylesheet" href="style.css">
-    <script src="popuchart.js" defer></script>
+    <script src="predict.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
     <!-- chart.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -24,43 +24,6 @@
     
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style= "background-color: blanchedalmond;">
-    <!-- <section id='navbar__main'>
-        <div class='header__logo'>
-            <a href="../">mapmap</a>
-        </div>
-        <div class="navbar__menu">
-            <ul class="nav__links nav__links--left">
-            </ul>
-            <ul class="nav__links nav__links--right">
-                <li class="nav__links--item"><span class="nav__text">행정구역</span>
-                    <div class="line"></div>
-                    <ul class="dropdown_menu">   
-                        <li class="detail_menu top"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                    </ul>    
-                </li>
-                <li class="nav__links--item"><span class="nav__text">자연환경</span>
-                    <div class="line"></div>
-                    <ul class="dropdown_menu">
-                        <li class="detail_menu top"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                    </ul>   
-                </li>
-                <li class="nav__links--item"><span class="nav__text">인구분포</span>
-                    <div class="line"></div>
-                    <ul class="dropdown_menu">
-                        <li class="detail_menu top"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                    </ul>   
-                </li>
-                <li class="nav__links--item"><span class="nav__text"><a href="/puzzle">미니게임</a></span> 
-                </li>
-            </ul>
-        </div>
-    </section> -->
     <section id="chart" class="section">
         <div class="popu__section__container">
             <div class="popu__summary__top">
@@ -208,13 +171,13 @@
                 
                 <div class="male"><i class="fas fa-male"></i></div>
                 <div class="popu__summary__end__mid">
-                    <div class="population__year">1950</div>
+                    <div class="population__year">2020</div>
                     <div class="chart__button__container">
                         <button class="population__chart__start">시작하기</button>
                        
                         <button class="population__chart__stop" onclick="stop()">중단하기</button>
 
-                        <button class="population__chart__resume" onclick="chart_start()">이어하기</button>
+                        <button class="population__chart__resume" onclick="chart_start()">재개하기</button>
                         
                     </div>
 
@@ -244,7 +207,7 @@
         
     </section>
 
-    <input type="file" onchange="readExcel()">
+    <!-- <input type="file" onchange="readExcel()"> -->
 </body>
 </html>
 

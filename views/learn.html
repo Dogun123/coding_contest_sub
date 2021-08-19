@@ -14,7 +14,7 @@
         @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
     </style>
     <link rel="stylesheet" href="style.css">
-    <script src="popuchart.js" defer></script>
+    <script src="learn.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
     <!-- chart.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -24,43 +24,6 @@
     
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style= "background-color: blanchedalmond;">
-    <!-- <section id='navbar__main'>
-        <div class='header__logo'>
-            <a href="../">mapmap</a>
-        </div>
-        <div class="navbar__menu">
-            <ul class="nav__links nav__links--left">
-            </ul>
-            <ul class="nav__links nav__links--right">
-                <li class="nav__links--item"><span class="nav__text">행정구역</span>
-                    <div class="line"></div>
-                    <ul class="dropdown_menu">   
-                        <li class="detail_menu top"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                    </ul>    
-                </li>
-                <li class="nav__links--item"><span class="nav__text">자연환경</span>
-                    <div class="line"></div>
-                    <ul class="dropdown_menu">
-                        <li class="detail_menu top"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                    </ul>   
-                </li>
-                <li class="nav__links--item"><span class="nav__text">인구분포</span>
-                    <div class="line"></div>
-                    <ul class="dropdown_menu">
-                        <li class="detail_menu top"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                        <li class="detail_menu"><a href="#">SUB_MENU</a></li>
-                    </ul>   
-                </li>
-                <li class="nav__links--item"><span class="nav__text"><a href="/puzzle">미니게임</a></span> 
-                </li>
-            </ul>
-        </div>
-    </section> -->
     <section id="chart" class="section">
         <div class="popu__section__container">
             <div class="popu__summary__top">
@@ -100,7 +63,14 @@
                         <!-- 폰트어썸아이콘 -->
                         <i class="fas fa-times popup__close"></i>
                     </div>
-                    <div id="chart_div_aging"></div>
+                    <div id="chart_div_aging">
+                    </div>
+                    <div class="aging__level">
+                        <div class="super__old">초고령 사회</div>
+                        <div class="very__old">고령 사회</div>
+                        <div class="old">고령화 사회</div>
+                        
+                    </div>
                 </div>
             </div>
 
@@ -239,12 +209,55 @@
             </div>
         </div>
 
-
-
+        <!-- 힌트 -->
+        <div class="hint_container">
+            <p class="hint">힌트 : ㅇㅇㅇ는 노인 인구를 전체 인구로 나눈 노인 비율이 증가하는 것을 말한다.</p>
+            <div class="hint__close">
+                닫기
+            </div>
+          </div>
         
     </section>
 
-    <input type="file" onchange="readExcel()">
+    
+<div class="wrapper">
+    <div class="gamerule">
+        <div class="script__arrow__container">
+            <div class="script__arrow__down">
+                접기
+            <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="script__arrow__up">
+                펼치기
+                <i class="fas fa-chevron-up"></i>
+            </div>
+            
+        </div>
+            <img class="character" src="imgs/penguin.png" alt=""/>
+        <div class="script__container">
+            <div class="script"></div>
+            <div class="script__button__container">
+                <div class="script__button__box">
+                    <input class="script_input" type="text"/>
+                    <button class="script_button1">시작하기</button>
+                    <button class="script_button2">시작하기</button>
+                    <button class="script_button3">시작하기</button>
+                    <button class="script_button4">시작하기</button>
+                    <button class="hint_button">힌트</button>
+                </div>
+            </div>
+            <div class="skip__button__box">
+                <div class="back__button"> < Back</div>
+                <div class="skip__button">Next ></div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+    <!-- <input type="file" onchange="readExcel()"> -->
 </body>
 </html>
 

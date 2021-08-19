@@ -18,7 +18,13 @@ module.exports = function(app)
     app.get('/popuquiz',function(req,res){
         res.render('popuquiz.html')
     });
-    app.get('/dutorial',function(req,res){
+    app.get('/tutorial',function(req,res){
         res.render('dutorial.html')
     });
+    app.get('/learn',function(req,res){
+        res.render('learn.html')
+    })
+    app.get('/predict',function(req,res){
+        res.render('predict.html')
+    })
 }
