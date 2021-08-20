@@ -720,6 +720,7 @@ const averageAgeBox=document.querySelector('.average__age');
 const character=document.querySelector('.character');
 const scriptArrowContainer=document.querySelector('.script__arrow__container');
 const yearArrow=document.querySelector('.population__year__arrow');
+const scriptInputBox = document.querySelector('.script_input_box');
 
 
 // skipButton.style.pointerEvents="none";
@@ -740,6 +741,7 @@ invisible(scriptButton3);
 invisible(scriptButton4);
 invisible(backButton);
 invisible(hintButton);
+scriptInputBox.style.display='none';
 
 // 스크립트 접기,펼치기
 const scriptFold=document.querySelector('.script__arrow__down');
@@ -958,6 +960,11 @@ scriptOpen.addEventListener('click',()=>{
         scriptButton4.innerHTML="한국에 사는 여성의 수"
       } else if(typingCount==8){
         scriptButton1.innerHTML="다시 풀기"
+      }
+
+      // input보이기 여부
+      if(typingCount==11){
+        scriptInputBox.style.display='';
       }
 
       // hint보이기 여부

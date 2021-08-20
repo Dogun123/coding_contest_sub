@@ -1299,10 +1299,26 @@ p {
   width: 150px;
 }
 
+.script_input_box{
+  display: flex;
+}
+
+.script_input_span{
+  text-align: center;
+  line-height: 48px;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
 .script_input{
   font-size: 20px;
   width:70px;
   text-align: center;
+}
+
+.script_input::after {
+  content: "명";
+  display: block;
 }
 
 .script_button1:hover{
