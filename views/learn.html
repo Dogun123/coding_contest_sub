@@ -211,7 +211,7 @@
 
         <!-- 힌트 -->
         <div class="hint_container">
-            <p class="hint">힌트 : ㅇㅇㅇ는 노인 인구를 전체 인구로 나눈 노인 비율이 증가하는 것을 말한다.</p>
+            <p class="hint"></p>
             <div class="hint__close">
                 닫기
             </div>
@@ -223,6 +223,7 @@
 <div class="wrapper">
     <div class="gamerule">
         <div class="script__arrow__container">
+            <button class="hint_button">힌트 <i class="fas fa-exclamation"></i></button>
             <div class="script__arrow__down">
                 접기
             <i class="fas fa-chevron-down"></i>
@@ -238,12 +239,19 @@
             <div class="script"></div>
             <div class="script__button__container">
                 <div class="script__button__box">
-                    <div class="script_input_box"><input class="script_input" type="text"/><span class="script_input_span">명</span></div>
+                    <div class="script_toggle_box">
+                        <div class="script_toggle_text">1950</div>
+                        <div class="script_toggle_arrow">
+                            <!-- 구글 아이콘 -->
+                            <span class="material-icons script_toggle_up">arrow_drop_up</span>
+                            <span class="material-icons script_toggle_down">arrow_drop_down</span>
+                        </div>
+                    </div>
+                    <div class="script_input_box"><input class="script_input" type="text" placeholder="숫자 입력"/><span class="script_input_span">명</span></div>
                     <button class="script_button1">시작하기</button>
                     <button class="script_button2">시작하기</button>
                     <button class="script_button3">시작하기</button>
                     <button class="script_button4">시작하기</button>
-                    <button class="hint_button">힌트</button>
                 </div>
             </div>
             <div class="skip__button__box">

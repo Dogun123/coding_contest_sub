@@ -1206,7 +1206,7 @@ p {
 .script__arrow__container{
   display: flex;
   position: relative;
-  left: 91%;
+  left: 85%;
   bottom: 30px;
   color: black;
   margin: 0 auto;
@@ -1225,6 +1225,22 @@ p {
   cursor:pointer;
 }
 
+.hint_button{
+  width:80px;
+  border:1px solid var(--color-grey);
+  border-radius: 3px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: white;
+  cursor:pointer;
+  margin-right: 10px;
+}
+
+.hint_button:hover .fa-exclamation{
+  color:red;
+  font-size: 18px;
+}
 
 
 .character {
@@ -1299,7 +1315,8 @@ p {
   width: 150px;
 }
 
-.script_input_box{
+.script_input_box,
+.script_toggle_box{
   display: flex;
 }
 
@@ -1308,11 +1325,12 @@ p {
   line-height: 48px;
   font-size: 30px;
   margin-left: 10px;
+  margin-right: 20px;
 }
 
 .script_input{
   font-size: 20px;
-  width:70px;
+  width:100px;
   text-align: center;
 }
 
@@ -1334,9 +1352,7 @@ p {
   background:rgb(247, 102, 86)
 }
 
-.hint_button:hover{
-  background: rgb(139, 82, 197);
-}
+
 
 .hint_container {
   width: 300px;
@@ -1370,16 +1386,17 @@ p {
   color:var(--color-blue);
 }
 
-.hint_button{
-  padding: 0.5rem 0.5rem;
-  margin: 0 2rem;
-  color: #fff;
-  background: #9966cc;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 17px;
-  width: 100px;
+.script_toggle_text{
+  font-size: 40px;
+  font-weight: var(--weight-bold);
+}
+
+.script_toggle_arrow{
+  display:flex;
+  flex-direction: column;
+  position:relative;
+  bottom:10px;
+  margin-left: 10px;
 }
 
 /* .hint_button {

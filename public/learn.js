@@ -721,7 +721,12 @@ const character=document.querySelector('.character');
 const scriptArrowContainer=document.querySelector('.script__arrow__container');
 const yearArrow=document.querySelector('.population__year__arrow');
 const scriptInputBox = document.querySelector('.script_input_box');
-
+const scriptInput=document.querySelector('.script_input');
+const scrtiptInputSpan = document.querySelector('.script_input_span');
+const scriptToggleBox = document.querySelector('.script_toggle_box');
+const scriptToggleText = document.querySelector('.script_toggle_text');
+const scriptToggleUp = document.querySelector('.script_toggle_up');
+const scriptToggleDown = document.querySelector('.script_toggle_down');
 
 // skipButton.style.pointerEvents="none";
 // 컨테이너 보이게,안보이게
@@ -775,7 +780,7 @@ scriptOpen.addEventListener('click',()=>{
 })
     
 
-    const content =["얘들아 안녕?/나는 펭두야!","내가 너희들의 선생님이 되어서 우리나라의 인구 구성에 대해 알려주려고 해.","그럼 이제 시작해 볼까?","좋은 생각이야!/그런데 내가 중간 중간에 너희들에게 문제를 낼거야.","여기 보이는 화면 안의 기능을 잘 활용하면에 답을 구할 수 있을거야!","먼저 '인구'란 무엇일까?","인구란 한 나라 또는 일정한 지역에 사는 사람의 수를 의미해.","그러면 '대한민국 인구'는 무엇을 의미할까?","음.. 다시 풀어볼까?","오! 제법하는데?","그런데 말이야/한국에서는 요즘 아기를 잘 낳지 않아서 저출산 문제가 심각하다며?","내가 알고있는 60살 할아버지는 초등학생때 한 반에 50명이나 있었다는데.. 너희 반에는 학생이 몇 명이나 있어?"];
+    const content =["얘들아 안녕?/나는 펭두야!","내가 너희들의 선생님이 되어서 우리나라의 인구 구성에 대해 알려주려고 해.","그럼 이제 시작해 볼까?","좋은 생각이야!/그런데 내가 중간 중간에 너희들에게 문제를 낼거야.","여기 보이는 화면 안의 기능을 잘 활용하면에 답을 구할 수 있을거야!","먼저 '인구'란 무엇일까?","인구란 한 나라 또는 일정한 지역에 사는 사람의 수를 의미해.","그러면 '대한민국 인구'는 무엇을 의미할까?","음.. 다시 풀어볼까?","오! 제법하는데?","2020년 대한민국 인구는 총 몇 명일까?","그래프를 다시 확인해 볼래?","정답이야!/2020년 대한민국 총인구는 약 5126만명이야.","그런데 말이야./한국에서는 요즘 아기를 잘 낳지 않아서 저출산 문제가 심각하다며?","내가 알고있는 60살 할아버지는 초등학생때 한 반에 50명이나 있었다는데.../요즘은 학급당 평균 학생 수가 22명이라던데!","이렇게 초등학교 학급당 평균 학생 수가 줄어드는 까닭은 뭘까?","진짜 그렇게 생각해?!!","맞아.../점점 아이를 적게 낳기 때문에 초등학교에 입학하는 학생들이 줄어들고 있어.",""];
 
 
 
@@ -882,23 +887,28 @@ scriptOpen.addEventListener('click',()=>{
     })
 
     scriptButton1.addEventListener('click',()=>{
-      if(typingCount==2 || typingCount==7){
+      if(typingCount==2 || typingCount==7||typingCount==15){
         goNext();
-      } else if(typingCount==8){
+      } else if(typingCount==8||typingCount==11||typingCount==16){
         goBack();
+      } else if(typingCount==10){
+        if(scriptInput.value=="5126"){
+          right();
+        } else{
+          goNext();
+        }
       }
 
     })
 
     scriptButton2.addEventListener('click',()=>{
-      if(typingCount==7){
+      if(typingCount==7||typingCount==15){
         goNext();
-
       }
     })
 
     scriptButton3.addEventListener('click',()=>{
-      if(typingCount==7){
+      if(typingCount==7||typingCount==15){
         right();
       }
     })
@@ -920,9 +930,7 @@ scriptOpen.addEventListener('click',()=>{
       }
 
       // 버튼1 보이기여부
-      if(typingCount==2 || typingCount==7){
-        visible(scriptButton1);
-      } else if(typingCount==8){
+      if(typingCount==2 || typingCount==7 || typingCount==8 || typingCount==11 ||typingCount==10||typingCount==15||typingCount==16){
         visible(scriptButton1);
       }
       else{
@@ -930,14 +938,14 @@ scriptOpen.addEventListener('click',()=>{
       }
 
       // 버튼2 보이기여부
-      if(typingCount==7){
+      if(typingCount==7 ||typingCount==15){
         visible(scriptButton2);
       } else{
         invisible(scriptButton2);
       }
       
       // 버튼3 보이기여부
-      if(typingCount==7){
+      if(typingCount==7||typingCount==15){
         visible(scriptButton3);
       } else{
         invisible(scriptButton3);
@@ -958,17 +966,29 @@ scriptOpen.addEventListener('click',()=>{
         scriptButton2.innerHTML="일본에 사는 사람의 수"
         scriptButton3.innerHTML="한국에 사는 사람의 수"
         scriptButton4.innerHTML="한국에 사는 여성의 수"
-      } else if(typingCount==8){
+      } else if(typingCount==8 || typingCount==11|| typingCount==16){
         scriptButton1.innerHTML="다시 풀기"
+      } else if(typingCount==10){
+        scriptButton1.innerHTML="확 인"
+      } else if(typingCount==15){
+        scriptButton1.innerHTML="전쟁으로 인해서"
+        scriptButton2.innerHTML="아이를 많이 낳아서"
+        scriptButton3.innerHTML="아이를 적게 낳아서"
       }
 
       // input보이기 여부
-      if(typingCount==11){
-        scriptInputBox.style.display='';
-      }
+      if(typingCount==10){
+          scriptInputBox.style.display='';
+          scrtiptInputSpan.innerHTML="만";
+        } else{
+          scriptInput.value='';
+          scriptInputBox.style.display='none';
+        }
+        
+
 
       // hint보이기 여부
-      if(typingCount==7){
+      if(typingCount==7||typingCount==10){
         visible(hintButton);
       } else {
         invisible(hintButton);
@@ -977,6 +997,8 @@ scriptOpen.addEventListener('click',()=>{
       // hint텍스트
       if(typingCount==7){
         hintText.innerHTML="인구란 한 나라 또는 일정한 지역에 사는 사람의 수이다.";
+      } else if(typingCount==10){
+        hintText.innerHTML="화면에서 2020년 그래프를 검색해 보면 2020년 총인구를 확인할 수 있어요.";
       }
 
       // 차트컨테이너 깜빡임
@@ -990,8 +1012,8 @@ scriptOpen.addEventListener('click',()=>{
         invisible(hintContainer);
       }
 
-
-    }
+    }  
+    
     
     // 스크립트 위치 위로 or 아래로
     let scriptTop = false;
@@ -1033,4 +1055,12 @@ hintClose.addEventListener('click',()=>{
   invisible(hintContainer);
 })
 
+// 스크립트 토글 버튼
+let toggleText = 1950;
 
+// scriptToggleUp.addEventListener('click',()=>{
+//   toggleText = toggleText + 5;
+//   scriptToggleText.innerHTML=toggleText.toString();
+// })
+
+console.log(scriptToggleUp);
