@@ -725,8 +725,8 @@ const scriptInput=document.querySelector('.script_input');
 const scrtiptInputSpan = document.querySelector('.script_input_span');
 const scriptToggleBox = document.querySelector('.script_toggle_box');
 const scriptToggleText = document.querySelector('.script_toggle_text');
-const scriptToggleUp = document.querySelector('.script_toggle_up');
-const scriptToggleDown = document.querySelector('.script_toggle_down');
+const scriptToggleUp = document.querySelector('#script_toggle_up');
+const scriptToggleDown = document.querySelector('#script_toggle_down');
 
 // skipButton.style.pointerEvents="none";
 // 컨테이너 보이게,안보이게
@@ -747,6 +747,7 @@ invisible(scriptButton4);
 invisible(backButton);
 invisible(hintButton);
 scriptInputBox.style.display='none';
+scriptToggleBox.style.display='none';
 
 // 스크립트 접기,펼치기
 const scriptFold=document.querySelector('.script__arrow__down');
@@ -1058,9 +1059,9 @@ hintClose.addEventListener('click',()=>{
 // 스크립트 토글 버튼
 let toggleText = 1950;
 
-// scriptToggleUp.addEventListener('click',()=>{
-//   toggleText = toggleText + 5;
-//   scriptToggleText.innerHTML=toggleText.toString();
-// })
+scriptToggleUp.addEventListener('click',()=>{
+  toggleText = toggleText + 5;
+  scriptToggleText.innerHTML=toggleText.toString();
+})
 
 console.log(scriptToggleUp);
