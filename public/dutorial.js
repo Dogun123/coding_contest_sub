@@ -10,7 +10,7 @@ total_data = [19211,21515,25330,28896,32196,35379,38046,40804,42918, 45293,47379
 averageage_data =[19.0,	18.9,	18.6,	18.4,	19.0,	19.9,	22.1,	24.3,	27.0,	29.3,	31.9,	34.8,	38.0,	40.8,	43.7
 ]
 
-aging_data = [3.0,3.4,3.5,3.6,3.6,3.9,4.3,4.7,5.5,6.4,7.7,9.7,12.0,14.8,18.8]
+aging_data = [3.0,3.4,3.5,3.6,3.6,3.9,4.3,4.7,5.5,6.4,7.7,9.7,12.0,14.8,16.0]
 
 const num = document.querySelectorAll('.population__bar__num');
 const chart = document.querySelectorAll('.population__bar__value');
@@ -592,7 +592,7 @@ popupClose[2].addEventListener('click',()=>{
 
 // 구글차트
 
-google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.load('current', {packages: ['corechart']});
 
 
 function drawBasicAv() {
@@ -695,12 +695,14 @@ function drawBasicAv() {
     
       data.addRows([
         ['1950',3.0],['1955',3.4],['1960',3.5],['1965',3.6],['1970',3.6],['1975',3.9],['1980',4.3],['1985',4.7],
-        ['1990',5.5],['1995',6.4],['2000',7.7],['2005',9.7],['2010',12.0],['2015',14.8],['2020',18.8]
+        ['1990',5.5],['1995',6.4],['2000',7.7],['2005',9.7],['2010',12.0],['2015',14.8],['2020',16.0]
       ]);
     
     
     
       var options = {
+        seriesType:'bars',
+        series:{2:{type:'line'}},
         width:795,
         height:560,
         chartArea: {'width': '85%', 'height': '75%','left':'12%'},
@@ -728,7 +730,7 @@ function drawBasicAv() {
     
       options.legend = ('top');
     
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div_aging'));
+      var chart = new google.visualization.ComboChart(document.getElementById('chart_div_aging'));
     
       chart.draw(data, options);
       window.addEventListener('resize',drawBasicAging,false);
@@ -740,17 +742,41 @@ function drawBasicAv() {
 
 // 스크립트 버튼
 const skipButton=document.querySelector(".skip__button");
-const scriptButton = document.querySelector(".script_button");
+const scriptButton1 = document.querySelector(".script_button1");
+const scriptButton2 = document.querySelector(".script_button2");
+const scriptButton3 = document.querySelector(".script_button3");
+const scriptButton4 = document.querySelector(".script_button4");
 const backButton=document.querySelector(".back__button");
 const popuTop=document.querySelector('.popu__summary__top');
 const averageAgeBox=document.querySelector('.average__age');
 const character=document.querySelector('.character');
 const scriptArrowContainer=document.querySelector('.script__arrow__container');
 const yearArrow=document.querySelector('.population__year__arrow');
+const scriptInputBox = document.querySelector('.script_input_box');
+const scriptToggleBox = document.querySelector('.script_toggle_box');
+const hintButton = document.querySelector(".hint_button");
 
 
-scriptButton.style.opacity='0';
-scriptButton.style.pointerEvents='none';
+// 컨테이너 보이게,안보이게
+function invisible(i){
+  i.style.opacity='0'
+  i.style.pointerEvents='none'
+
+}
+function visible(i){
+  i.style.opacity='1'
+  i.style.pointerEvents='auto'
+
+}
+
+invisible(hintButton);
+invisible(scriptButton1);
+invisible(scriptButton2);
+invisible(scriptButton3);
+invisible(scriptButton4);
+// invisible(backButton);
+scriptInputBox.style.display='none';
+scriptToggleBox.style.display='none';
 
 // 스크립트 접기,펼치기
 const scriptFold=document.querySelector('.script__arrow__down');
@@ -796,18 +822,27 @@ const chartTop = document.querySelector(".popu__summary__top");
 
 let index = 0;
 let isStop = false;
-
+const speed = 60;
+const speedSlow = 400;  
 
 let typingCount = 0;
 
 function typing(){
   if(index<content[typingCount].length){
-    text.textContent += content[typingCount][index++]
-  } else{
-    skipButton.classList.add('skip__animation');
-    clearInterval(typing);
-    
-  }
+    if(content[typingCount][index]=="/"){
+      var a = document.createElement('br');
+      text.append(a)
+      index++
+      setTimeout(typing, speedSlow);
+      } else{
+        text.append(content[typingCount][index])
+        index++
+        setTimeout(typing,speed);
+      }
+    } else{
+        skipButton.classList.add('skip__animation');
+        typingAnimation()
+    }
 // 바로넘어가기 방지(버튼을 눌렀을때만 넘어가도록)
   if(typingCount==7 || typingCount==9 || typingCount==11 ||typingCount==14 ||typingCount==17){
     skipButton.classList.remove('skip__animation');
@@ -828,7 +863,8 @@ function goNext(){
   index=0;
   text.textContent = "";
   typingCount++;
-  setInterval(typing, 100);
+  console.log(typingCount);
+  setTimeout(typing, speed);
   typingAnimation();
 }
 
@@ -852,12 +888,12 @@ function goBack(){
   } else{
     typingCount--;
   }
-  setInterval(typing, 100);
+  setTimeout(typing, speed);
   typingAnimation();
-}
+};
 
 
-setInterval(typing, 100);
+setTimeout(typing, speed);
 
 skipButton.addEventListener('click',()=>{
   if(typingCount!=7){
@@ -981,9 +1017,36 @@ function typingAnimation(){
     stop();
   }
 
+  if(typingCount==17){
+    visible(scriptButton1)
+  } else{
+    invisible(scriptButton1)
+  }
+
+  if(typingCount==17){
+    visible(scriptButton2)
+  } else{
+    invisible(scriptButton2)
+  }
+
+  if(typingCount==17){
+    scriptButton1.innerHTML="홈으로"
+    scriptButton2.innerHTML="학습하기"
+  }
 // 220px
 }
 
+scriptButton1.addEventListener('click',()=>{
+  if(typingCount==17){
+    window.location.href="/"
+  } 
+})
+
+scriptButton2.addEventListener('click',()=>{
+  if(typingCount==17){
+    window.location.href="learn"
+  } 
+})
 // 스크립트 위치 위로 or 아래로
 let scriptTop = false;
 

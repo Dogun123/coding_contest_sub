@@ -8,7 +8,7 @@ total_data = [19211,21515,25330,28896,32196,35379,38046,40804,42918, 45293,47379
 averageage_data =[19.0,	18.9,	18.6,	18.4,	19.0,	19.9,	22.1,	24.3,	27.0,	29.3,	31.9,	34.8,	38.0,	40.8,	43.7,45.4,47.6,49.6,51.4,53.1,54.4
 ]
 
-aging_data = [3.0,3.4,3.5,3.6,3.6,3.9,4.3,4.7,5.5,6.4,7.7,9.7,12.0,14.8,18.8,20.3,25.0,29.5,33.9,37.0,39.8]
+aging_data = [3.0,3.4,3.5,3.6,3.6,3.9,4.3,4.7,5.5,6.4,7.7,9.7,12.0,14.8,16.0,20.3,25.0,29.5,33.9,37.0,39.8]
 
 const num = document.querySelectorAll('.population__bar__num');
 const chart = document.querySelectorAll('.population__bar__value');
@@ -573,7 +573,7 @@ popupClose[2].addEventListener('click',()=>{
 
 // 구글차트
 
-google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.load('current', {packages: ['corechart']});
 
 
 function drawBasicAv() {
@@ -615,7 +615,7 @@ function drawBasicAv() {
       }
       options.legend = ('top');
 
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div_av'));
+      var chart = new google.visualization.ComboChart(document.getElementById('chart_div_av'));
 
       chart.draw(data, options);
       window.addEventListener('resize',drawBasicAv,false);
@@ -676,12 +676,14 @@ function drawBasicAv() {
     
       data.addRows([
         ['1950',3.0],['1960',3.5],['1970',3.6],['1980',4.3],
-        ['1990',5.5],['2000',7.7],['2010',12.0],['2020',18.8],['2030(전망)',25.0],['2040(전망)',33.9],['2050(전망)',39.8],['2060(전망)',43.9]
+        ['1990',5.5],['2000',7.7],['2010',12.0],['2020',16.0],['2030(전망)',25.0],['2040(전망)',33.9],['2050(전망)',39.8],['2060(전망)',43.9]
       ]);
     
     
     
       var options = {
+        seriesType:'bars',
+        series:{2:{type:'line'}},
         width:795,
         height:560,
         chartArea: {'width': '85%', 'height': '75%','left':'12%'},
@@ -709,7 +711,7 @@ function drawBasicAv() {
     
       options.legend = ('top');
     
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div_aging'));
+      var chart = new google.visualization.ComboChart(document.getElementById('chart_div_aging'));
     
       chart.draw(data, options);
       window.addEventListener('resize',drawBasicAging,false);

@@ -6,7 +6,7 @@ total_data = [51269,51905,51926,51629,50855,49574,47744]
 
 averageage_data =[43.7,45.4,47.6,49.6,51.4,53.1,54.4]
 
-aging_data = [18.8,20.3,25.0,29.5,33.9,37.0,39.8]
+aging_data = [16.0,20.3,25.0,29.5,33.9,37.0,39.8]
 
 const num = document.querySelectorAll('.population__bar__num');
 const chart = document.querySelectorAll('.population__bar__value');
@@ -572,7 +572,7 @@ popupClose[2].addEventListener('click',()=>{
 
 // 구글차트
 
-google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.load('current', {packages: ['corechart']});
 
 
 function drawBasicAv() {
@@ -672,12 +672,14 @@ function drawBasicAv() {
       data.addColumn('number', '고령화(%)');
     
       data.addRows([
-        ['2020',18.8],['2025(전망)',20.3],['2030(전망)',25.0],['2035(전망)',29.5],['2040(전망)',33.9],['2045(전망)',37.0],['2050(전망)',39.8],['2055(전망)',41.4],['2060(전망)',43.9],['2065(전망)',46.1]
+        ['2020',16.0],['2025(전망)',20.3],['2030(전망)',25.0],['2035(전망)',29.5],['2040(전망)',33.9],['2045(전망)',37.0],['2050(전망)',39.8],['2055(전망)',41.4],['2060(전망)',43.9],['2065(전망)',46.1]
       ]);
     
     
     
       var options = {
+        seriesType:'bars',
+        series:{2:{type:'line'}},
         width:795,
         height:560,
         chartArea: {'width': '85%', 'height': '75%','left':'12%'},
@@ -705,7 +707,7 @@ function drawBasicAv() {
     
       options.legend = ('top');
     
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div_aging'));
+      var chart = new google.visualization.ComboChart(document.getElementById('chart_div_aging'));
     
       chart.draw(data, options);
       window.addEventListener('resize',drawBasicAging,false);

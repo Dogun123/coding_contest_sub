@@ -9,7 +9,7 @@ total_data = [19211,21515,25330,28896,32196,35379,38046,40804,42918, 45293,47379
 averageage_data =[19.0,	18.9,	18.6,	18.4,	19.0,	19.9,	22.1,	24.3,	27.0,	29.3,	31.9,	34.8,	38.0,	40.8,	43.7
 ]
 
-aging_data = [3.0,3.4,3.5,3.6,3.6,3.9,4.3,4.7,5.5,6.4,7.7,9.7,12.0,14.8,18.8]
+aging_data = [3.0,3.4,3.5,3.6,3.6,3.9,4.3,4.7,5.5,6.4,7.7,9.7,12.0,14.8,16.0]
 
 const num = document.querySelectorAll('.population__bar__num');
 const chart = document.querySelectorAll('.population__bar__value');
@@ -565,7 +565,7 @@ popupClose[2].addEventListener('click',()=>{
 
 // 구글차트
 
-google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.load('current', {packages: ['corechart']});
 
 
 function drawBasicAv() {
@@ -668,12 +668,14 @@ function drawBasicAv() {
     
       data.addRows([
         ['1950',3.0],['1955',3.4],['1960',3.5],['1965',3.6],['1970',3.6],['1975',3.9],['1980',4.3],['1985',4.7],
-        ['1990',5.5],['1995',6.4],['2000',7.7],['2005',9.7],['2010',12.0],['2015',14.8],['2020',18.8],['2030(전망)',25.0]
+        ['1990',5.5],['1995',6.4],['2000',7.7],['2005',9.7],['2010',12.0],['2015',14.8],['2020',16.0],['2030(전망)',25.0]
       ]);
     
     
     
       var options = {
+        seriesType:'bars',
+        series:{2:{type:'line'}},
         width:795,
         height:560,
         chartArea: {'width': '85%', 'height': '75%','left':'12%'},
@@ -701,7 +703,7 @@ function drawBasicAv() {
     
       options.legend = ('top');
     
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div_aging'));
+      var chart = new google.visualization.ComboChart(document.getElementById('chart_div_aging'));
     
       chart.draw(data, options);
       window.addEventListener('resize',drawBasicAging,false);
@@ -727,16 +729,22 @@ const scriptToggleBox = document.querySelector('.script_toggle_box');
 const scriptToggleText = document.querySelector('.script_toggle_text');
 const scriptToggleUp = document.querySelector('#script_toggle_up');
 const scriptToggleDown = document.querySelector('#script_toggle_down');
+const chartZero = document.querySelectorAll('.chart_zero');
+const popuChartMid = document.querySelector('.population__chart__mid');
+
+console.log(chartZero);
 
 // skipButton.style.pointerEvents="none";
 // 컨테이너 보이게,안보이게
 function invisible(i){
   i.style.opacity='0'
   i.style.pointerEvents='none'
+
 }
 function visible(i){
   i.style.opacity='1'
   i.style.pointerEvents='auto'
+
 }
 
 
@@ -744,7 +752,7 @@ invisible(scriptButton1);
 invisible(scriptButton2);
 invisible(scriptButton3);
 invisible(scriptButton4);
-invisible(backButton);
+// invisible(backButton);
 invisible(hintButton);
 scriptInputBox.style.display='none';
 scriptToggleBox.style.display='none';
@@ -781,9 +789,9 @@ scriptOpen.addEventListener('click',()=>{
 })
     
 
-    const content =["얘들아 안녕?/나는 펭두야!","내가 너희들의 선생님이 되어서 우리나라의 인구 구성에 대해 알려주려고 해.","그럼 이제 시작해 볼까?","좋은 생각이야!/그런데 내가 중간 중간에 너희들에게 문제를 낼거야.","여기 보이는 화면 안의 기능을 잘 활용하면에 답을 구할 수 있을거야!","먼저 '인구'란 무엇일까?","인구란 한 나라 또는 일정한 지역에 사는 사람의 수를 의미해.","그러면 '대한민국 인구'는 무엇을 의미할까?","음.. 다시 풀어볼까?","오! 제법하는데?","2020년 대한민국 인구는 총 몇 명일까?","그래프를 다시 확인해 볼래?","정답이야!/2020년 대한민국 총인구는 약 5126만명이야.","그런데 말이야./한국에서는 요즘 아기를 잘 낳지 않아서 저출산 문제가 심각하다며?","내가 알고있는 60살 할아버지는 초등학생때 한 반에 50명이나 있었다는데.../요즘은 학급당 평균 학생 수가 22명이라던데!","이렇게 초등학교 학급당 평균 학생 수가 줄어드는 까닭은 뭘까?","진짜 그렇게 생각해?!!","맞아.../점점 아이를 적게 낳기 때문에 초등학교에 입학하는 학생들이 줄어들고 있어.",""];
+    const content =["얘들아 안녕?/나는 펭두야!","내가 너희들의 선생님이 되어서 우리나라의 인구 구성에 대해 알려주려고 해.","그럼 이제 시작해 볼까?","좋은 생각이야!/그런데 내가 중간 중간에 너희들에게 문제를 낼거야.","여기 보이는 화면 안의 기능을 잘 활용하면에 답을 구할 수 있을거야!","먼저 '인구'란 무엇일까?","인구란 한 나라 또는 일정한 지역에 사는 사람의 수를 의미해.","그러면 '대한민국 인구'는 무엇을 의미할까?","음.. 다시 풀어볼까?","오! 제법하는데?","그런데 화면에 보이는 이 그래프는 도대체 뭐라고 부를까?","그래프의 정체는 바로...","음..","그래! 인구 피라미드야.","인구 피라미드는 한 국가 또는 지역의 인구 구성을 피라미드 모양으로 나타낸 그래프야.", "인구피라미드의 가로축은 무엇을 나타내고 있는걸까?","아닌것 같은데..","맞아~/가로축은 남녀 인구수를 각각 나타내는거야.","그러면 인구피라미드 세로축은 무엇을 나타내고 있는거 같아?","다시 잘 생각해봐!","잘 맞췄어!/가로축은 남녀 인구수를 나타내고 세로축은 나이를 나타내.","인구피라미드를 통해 우리는 연령별,성별 인구 구성을 알 수 있어.","여기서 질문!/2020년 대한민국 인구는 총 몇 명일까?","그래프를 다시 확인해 볼래?","정답이야!/2020년 대한민국 총인구는 약 5126만명이야.","그런데 말이야./한국에서는 요즘 아기를 잘 낳지 않아서 저출산 문제가 심각하다며?","내가 알고있는 60살 할아버지는 초등학생때 한 반에 50명이나 있었다는데.../요즘은 학급당 평균 학생 수가 22명이라던데!","이렇게 초등학교 학급당 평균 학생 수가 줄어드는 까닭은 뭘까?","진짜 그렇게 생각해?!!","맞아.../점점 아이를 적게 낳기 때문에 초등학교에 입학하는 학생들이 줄어들고 있어.","0~9살 인구수가 가장 많은 연도는 언제일까?","아닌데..","정답이야! 6.25전쟁 이후 출생아 수가 폭발적으로 증가하면서 1965년도에 0~9세 인구가 가장 많았어.","이 당시에 태어난 세대를 베이비붐 세대라고도 하지!","반대로 0~9살 인구수가 가장 적은 연도는 언제일까?","차트를 다시 잘 찾아봐..","정답이야! 2020년에 0~9살 인구수가 가장 적어.","차트를 살펴보니까 왜 초등학교에 학생수가 줄어들고 있는지 잘 알겠지?","그럼 노인 인구 비율은 점점 어떻게 변화하고 있을까?","화면에 깜빡이는 박스안에 '고령화'라는 글자 보이지?","고령화란 전체 인구에서 65세 이상 노인 인구가 차지하는 비율을 의미해.","예를 들어 고령화 비율이 20%라고 하면 전체 인구가 100명이라고 가정할 때 20명은 65세 이상 노인이라는 뜻이야.","그러면 고령화 비율이 높으면 전체 인구에서 할아버지,할머니의 수가 많다는걸까 적다는걸까?","진짜 적다고 생각해?","그렇지./고령화 비율이 높으면 노인 인구가 많다는 뜻이겠지?","65세 이상 인구가 전체 인구의 7퍼센트를 넘으면 '고령화 사회'/14%를 넘으면 '고령 사회'/20%를 넘으면 '초고령 사회'라고 불러.","그러면 대한민국은 몇년도 부터 고령화 사회에 진입했을까?","고령화 그래프를 다시 확인해보자.","정답!", "그러면 65세 이상 인구의 비율로 볼 때 현재는 어떤 사회에 해당될까?","다시 풀어보자.","맞아~/그래프를 보면 2020년 고령화 비율은 16%로 고령 사회라고 할 수 있어.","흠../그러면 도대체 무엇때문에 노인 인구 비율이 이렇게나 높아지는걸까?","내가 살고 있는 펭귄국 인구 자료를 통해 같이 알아보자구!"];
 
-
+  
 
     
     const text = document.querySelector(".script");
@@ -881,6 +889,7 @@ scriptOpen.addEventListener('click',()=>{
     // 넘어가기,뒤로가기
     skipButton.addEventListener('click',()=>{
         goNext();
+        
     })
     
     backButton.addEventListener('click',()=>{
@@ -888,12 +897,38 @@ scriptOpen.addEventListener('click',()=>{
     })
 
     scriptButton1.addEventListener('click',()=>{
-      if(typingCount==2 || typingCount==7||typingCount==15){
+      if(typingCount==2 || typingCount==7|| typingCount==11||typingCount==27||typingCount==39||typingCount==18){
         goNext();
-      } else if(typingCount==8||typingCount==11||typingCount==16){
+      } else if(typingCount==8||typingCount==23||typingCount==28||typingCount==31||typingCount==35||typingCount==12||typingCount==16||typingCount==19||typingCount==43||typingCount==47||typingCount==50){
         goBack();
-      } else if(typingCount==10){
+      } else if(typingCount==22){
         if(scriptInput.value=="5126"){
+          right();
+        } else{
+          goNext();
+        }
+      } else if(typingCount==30){
+        if(scriptToggleText.innerHTML=="1965"){
+          right();
+        } else{
+          goNext();
+        }
+      } else if(typingCount==34){
+        if(scriptToggleText.innerHTML=="2020"){
+          right();
+        } else{
+          goNext();
+        }
+      } else if(typingCount==15||typingCount==42){
+        right();
+      } else if(typingCount==46){
+        if(scriptToggleText.innerHTML=="2000"){
+          right();
+        } else{
+          goNext();
+        }
+      } else if(typingCount==49){
+        if(scriptInput.value=="고령"||scriptInput.value=="고 령"||scriptInput.value==" 고 령"||scriptInput.value==" 고 령"){
           right();
         } else{
           goNext();
@@ -903,20 +938,26 @@ scriptOpen.addEventListener('click',()=>{
     })
 
     scriptButton2.addEventListener('click',()=>{
-      if(typingCount==7||typingCount==15){
+      if(typingCount==7||typingCount==11||typingCount==27||typingCount==15||typingCount==42){
         goNext();
+      } else if(typingCount==18){
+        right();
       }
     })
 
     scriptButton3.addEventListener('click',()=>{
-      if(typingCount==7||typingCount==15){
+      if(typingCount==7||typingCount==27){
         right();
+      } else if(typingCount==11){
+        goNext();
       }
     })
 
     scriptButton4.addEventListener('click',()=>{
       if(typingCount==7){
         goNext();
+      } else if(typingCount==11){
+        right();
       }
     })
     
@@ -931,7 +972,7 @@ scriptOpen.addEventListener('click',()=>{
       }
 
       // 버튼1 보이기여부
-      if(typingCount==2 || typingCount==7 || typingCount==8 || typingCount==11 ||typingCount==10||typingCount==15||typingCount==16){
+      if(typingCount==2 || typingCount==7 || typingCount==8 || typingCount==11||typingCount==12||typingCount==15||typingCount==16||typingCount==18||typingCount==19||typingCount==23 ||typingCount==22||typingCount==27||typingCount==28||typingCount==30||typingCount==31||typingCount==34||typingCount==35||typingCount==42||typingCount==43|typingCount==46||typingCount==47||typingCount==49||typingCount==50||typingCount==53){
         visible(scriptButton1);
       }
       else{
@@ -939,21 +980,21 @@ scriptOpen.addEventListener('click',()=>{
       }
 
       // 버튼2 보이기여부
-      if(typingCount==7 ||typingCount==15){
+      if(typingCount==7 ||typingCount==11||typingCount==15||typingCount==18||typingCount==27||typingCount==42){
         visible(scriptButton2);
       } else{
         invisible(scriptButton2);
       }
       
       // 버튼3 보이기여부
-      if(typingCount==7||typingCount==15){
+      if(typingCount==7||typingCount==27||typingCount==11){
         visible(scriptButton3);
       } else{
         invisible(scriptButton3);
       }
 
       // 버틑4 보이기여부
-      if(typingCount==7){
+      if(typingCount==7||typingCount==11){
         visible(scriptButton4);
       } else{
         invisible(scriptButton4);
@@ -967,29 +1008,56 @@ scriptOpen.addEventListener('click',()=>{
         scriptButton2.innerHTML="일본에 사는 사람의 수"
         scriptButton3.innerHTML="한국에 사는 사람의 수"
         scriptButton4.innerHTML="한국에 사는 여성의 수"
-      } else if(typingCount==8 || typingCount==11|| typingCount==16){
+      } else if(typingCount==8 || typingCount==23|| typingCount==28 ||typingCount==31||typingCount==35||typingCount==12||typingCount==16||typingCount==19||typingCount==43||typingCount==47||typingCount==50){
         scriptButton1.innerHTML="다시 풀기"
-      } else if(typingCount==10){
+      } else if(typingCount==22||typingCount==30||typingCount==34||typingCount==46||typingCount==49){
         scriptButton1.innerHTML="확 인"
-      } else if(typingCount==15){
+      } else if(typingCount==27){
         scriptButton1.innerHTML="전쟁으로 인해서"
         scriptButton2.innerHTML="아이를 많이 낳아서"
         scriptButton3.innerHTML="아이를 적게 낳아서"
+      } else if(typingCount==11){
+        scriptButton1.innerHTML="인구 에펠탑"
+        scriptButton2.innerHTML="인구 나무"
+        scriptButton3.innerHTML="인구 그릇"
+        scriptButton4.innerHTML="인구 피라미드"
+      } else if(typingCount==15||typingCount==18){
+        scriptButton1.innerHTML="남녀 인구"
+        scriptButton2.innerHTML="나이"
+      } else if(typingCount==42){
+        scriptButton1.innerHTML="많다"
+        scriptButton2.innerHTML="적다"
+      } else if(typingCount==53){
+        scriptButton1.innerHTML="알겠어!"
       }
 
       // input보이기 여부
-      if(typingCount==10){
+      if(typingCount==22){
           scriptInputBox.style.display='';
           scrtiptInputSpan.innerHTML="만";
+          scriptInput.placeholder="숫자입력";
+        } else if(typingCount==49){
+          scriptInputBox.style.display='';
+          scrtiptInputSpan.innerHTML="사회";
+          scriptInput.placeholder="";
         } else{
           scriptInput.value='';
           scriptInputBox.style.display='none';
         }
         
+       // toggle버튼 보이기 여부
+       if(typingCount==30||typingCount==34||typingCount==46){
+         scriptToggleBox.style.display='';
+
+       } else{
+        toggleText=1950
+        scriptToggleText.innerHTML=toggleText.toString();
+         scriptToggleBox.style.display='none'
+       }
 
 
       // hint보이기 여부
-      if(typingCount==7||typingCount==10){
+      if(typingCount==7||typingCount==11||typingCount==22||typingCount==30||typingCount==34||typingCount==46||typingCount==49){
         visible(hintButton);
       } else {
         invisible(hintButton);
@@ -998,8 +1066,18 @@ scriptOpen.addEventListener('click',()=>{
       // hint텍스트
       if(typingCount==7){
         hintText.innerHTML="인구란 한 나라 또는 일정한 지역에 사는 사람의 수이다.";
-      } else if(typingCount==10){
+      } else if(typingCount==22){
         hintText.innerHTML="화면에서 2020년 그래프를 검색해 보면 2020년 총인구를 확인할 수 있어요.";
+      } else if(typingCount==30){
+        hintText.innerHTML="그래프에서 0~9살 인구가 가장 많은 연도를 찾아보세요."
+      } else if(typingCount==34){
+        hintText.innerHTML="최근 연도의 그래프를 잘 살펴보세요."
+      } else if(typingCount==11){
+        hintText.innerHTML="그래프의 모양이 무엇이랑 닮았는지 잘 보세요."
+      } else if(typingCount==46){
+        hintText.innerHTML="고령화 그래프를 잘 확인해 보면 구할 수 있어요."
+      } else if(typingCount==49){
+        hintText.innerHTML="65세 이상 인구가 전체 인구의 7퍼센트를 넘으면 고령화 사회, 14%를 넘으면 고령 사회, 20%를 넘으면 초고령 사회라고 한다."
       }
 
       // 차트컨테이너 깜빡임
@@ -1012,6 +1090,41 @@ scriptOpen.addEventListener('click',()=>{
       if(hintButton.style.opacity=='0'){
         invisible(hintContainer);
       }
+
+      // 고련화박스 깜빡임
+      if(typingCount==39||typingCount==40){
+        agingContainer.classList.add('blink__animation');
+      } else{
+        agingContainer.classList.remove('blink__animation');
+      }
+
+      // 차트바 깜빡임
+      if((typingCount>=15 && typingCount<18)||typingCount==20){
+        for(i=0;i<chart.length;i++){
+          chart[i].classList.add('blink__animation__plus');
+        }
+      } else{
+        for(i=0;i<chart.length;i++){
+          chart[i].classList.remove('blink__animation__plus');
+        }
+      }
+
+      // 차트 나이 세로축 깜빡임
+      if(typingCount>=18 && typingCount<21){
+        popuChartMid.classList.add('blink__animation');
+      } else{
+        popuChartMid.classList.remove('blink__animation');
+      }
+
+      if(typingCount==45){
+        zIndexVal = zIndexVal+1
+        popupChart[2].style.zIndex = zIndexVal.toString(); 
+        popupAging.style.display ='';
+        google.charts.setOnLoadCallback(drawBasicAging);
+      } else{
+        popupAging.style.display='none';
+      }
+
 
     }  
     
@@ -1060,8 +1173,27 @@ hintClose.addEventListener('click',()=>{
 let toggleText = 1950;
 
 scriptToggleUp.addEventListener('click',()=>{
-  toggleText = toggleText + 5;
+  if(typingCount==30||typingCount==34||typingCount==46){
+    if(toggleText<2020){
+      toggleText = toggleText + 5;
+    } else{
+      toggleText = 1950
+    }
+    
+  }
   scriptToggleText.innerHTML=toggleText.toString();
 })
 
-console.log(scriptToggleUp);
+scriptToggleDown.addEventListener('click',()=>{
+  if(typingCount==30||typingCount==34||typingCount==46){
+    if(toggleText>1950)
+    {
+      toggleText = toggleText - 5;
+    } else{
+      toggleText = 2020;
+    }
+    
+  }
+  scriptToggleText.innerHTML=toggleText.toString();
+})
+

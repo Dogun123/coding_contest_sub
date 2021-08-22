@@ -141,7 +141,7 @@ p {
 /* keyframes */
 
 .blink__animation{
-  animation: blinkAnimation 1.5s linear infinite;
+  animation: blinkAnimation 2.0s linear infinite;
 }
 
 @keyframes blinkAnimation {
@@ -150,6 +150,23 @@ p {
   }
   50% {
     border: 2.5px solid red;
+  }
+  100% {
+    border: 2.5px solid white;
+  }
+
+}
+
+.blink__animation__plus{
+  animation: blinkAnimationPlus 2.0s linear infinite;
+}
+
+@keyframes blinkAnimationPlus {
+  0% {
+    border: 2.5px solid white;
+  }
+  50% {
+    border: 2.5px solid black;
   }
   100% {
     border: 2.5px solid white;
@@ -991,7 +1008,7 @@ p {
 }
 
 .old{
-  flex-basis: 54%;
+  flex-basis: 28%;
   background-color: rgba(73, 235, 33, 0.3);
 
 }
@@ -1245,14 +1262,15 @@ p {
 
 .character {
   position:relative;
-  right:5%;
+  left:-150px;
   bottom:50px;
   width: 250px;
   height: 250px;
 }
 
 .script__container{
-  
+  position: relative;
+  left:-110px;
   margin-left: 15px;
   margin-top: 10px;
   width:100%;
@@ -1320,12 +1338,14 @@ p {
   display: flex;
 }
 
+
 .script_input_span{
-  text-align: center;
+  text-align: left;
   line-height: 48px;
   font-size: 30px;
   margin-left: 10px;
   margin-right: 20px;
+  width: 70px;
 }
 
 .script_input{
