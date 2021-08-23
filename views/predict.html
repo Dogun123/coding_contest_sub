@@ -20,7 +20,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <!-- google charts -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style= "background-color: blanchedalmond;">
@@ -205,6 +206,14 @@
 
 
         
+    </section>
+
+    <section id="chart" class="section_chart">
+        <div>Teachable Machine Image Model</div>
+        <button type="button" onclick="init()">Start</button>
+        <div id="webcam-container"></div>
+        <div id="label-container"></div>
+
     </section>
 
     <!-- <input type="file" onchange="readExcel()"> -->
