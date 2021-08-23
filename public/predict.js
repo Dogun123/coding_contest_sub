@@ -725,7 +725,7 @@ function sleep(ms) {
 const chartSection = document.querySelector('.section');
 
 
-//chartSection.style.display='none';
+chartSection.style.display='none';
 
 
 const URL = "https://teachablemachine.withgoogle.com/models/P452ZsioK/";
@@ -754,9 +754,11 @@ async function init() {
     // append elements to the DOM
     document.getElementById("webcam-container").appendChild(webcam.canvas);
     labelContainer = document.getElementById("label-container");
-    for (let i = 0; i < maxPredictions; i++) { // and class labels
-        labelContainer.appendChild(document.createElement("div"));
-    }
+    // for (let i = 0; i < maxPredictions; i++) { // and class labels
+    //     labelContainer.appendChild(document.createElement("div"));
+    // }
+    labelContainer.appendChild(document.createElement("div"));
+    
 }
 
 async function loop() {
@@ -769,9 +771,16 @@ async function loop() {
 async function predict() {
     // predict can take in an image, video or canvas html element
     const prediction = await model.predict(webcam.canvas);
-    for (let i = 0; i < maxPredictions; i++) {
-        const classPrediction =
-            prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-        labelContainer.childNodes[i].innerHTML = classPrediction;
-    }
+    // for (let i = 0; i < maxPredictions; i++) {
+    //     const classPrediction =
+    //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+    //     labelContainer.childNodes[i].innerHTML = classPrediction;
+    // }
+        const classPrediction = Math.ceil(prediction[2].probability.toFixed(2)*100)+"% ";    
+        labelContainer.childNodes[0].innerHTML = classPrediction;
+        labelContainer.childNodes[0].style.backgroundColor="#03fcb6";
+        labelContainer.childNodes[0].style.width=classPrediction;
+        labelContainer.childNodes[0].style.borderRadius="5px";
+        labelContainer.childNodes[0].style.textAlign="right";
+        labelContainer.childNodes[0].style.fontStyle="italic";
 }

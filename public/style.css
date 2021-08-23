@@ -50,6 +50,10 @@ body {
   cursor: default;
 }
 
+canvas{
+  width: 400px;
+  height: 400px;
+}
 
 
 ul {
@@ -1467,6 +1471,44 @@ p {
 
 /* <--- population_chart */
 
+/* predict chart--> */
+.predict_title_container{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.predict_title{
+  margin-top: 25px;
+  width: 450px;
+  font-size: 30px;
+  border: 3px solid rgb(114, 81, 35);
+  background-color: rgb(250, 224, 186);
+  border-radius: 10px;
+  /* font-style:italic; */
+}
+.cam_on{
+  margin-top: 25px;
+  font-size: 20px;
+  background-color: rgb(250, 224, 186);
+  border: 3px solid rgb(82, 68, 48);;
+  border-radius: 5px;
+}
+
+.fa-video{
+  color:cornflowerblue;
+}
+
+#webcam-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+/* <-- predict chart */
+
+
+
 /* For below 1180px screen width */
 @media (max-width: 1280px) {
   #summary {
@@ -1498,6 +1540,14 @@ p {
 
   .script{
     font-size: 20px;
+  }
+
+  #label-container{
+    margin:auto;
+    max-width: 400px;
+    width: 400px;
+    height: 30px;
+    font-size: 27px;
   }
 
 }
