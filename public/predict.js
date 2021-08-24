@@ -723,19 +723,24 @@ function sleep(ms) {
 
 //차트 숨기기
 const chartSection = document.querySelector('.section');
+const machineSection = document.querySelector('.section_chart');
+const resultSection = document.querySelector('.predict_result');
 
 
 chartSection.style.display='none';
+resultSection.style.display='none';
 
 
 const URL = "https://teachablemachine.withgoogle.com/models/P452ZsioK/";
 
 let model, webcam, labelContainer, maxPredictions;
+let predictionNum=0;
 
 // Load the image model and setup the webcam
 async function init() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
+    
     // load the model and metadata
     // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
     // or files from your local hard drive
@@ -766,7 +771,23 @@ async function init() {
 async function loop() {
     webcam.update(); // update the webcam frame
     await predict();
-    window.requestAnimationFrame(loop);
+    if(classlevel>=100){
+      predictionNum ++
+      console.log(predictionNum);
+    };
+    if(predictionNum==100){
+      await webcam.stop();
+      setTimeout(()=>{
+        machineSection.style.display='none'
+      },2000);
+      setTimeout(()=>{
+        resultSection.style.display=''
+      },2500);
+
+    }else{
+      window.requestAnimationFrame(loop);
+    }
+    
 }
 
 // run the webcam image through the image model
@@ -778,7 +799,8 @@ async function predict() {
     //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
     //     labelContainer.childNodes[i].innerHTML = classPrediction;
     // }
-        const classPrediction = Math.ceil(prediction[0].probability.toFixed(2)*100)+"% ";    
+        const classPrediction = Math.ceil(prediction[2].probability.toFixed(2)*100)+"%";
+        classlevel=  Math.ceil(prediction[2].probability.toFixed(2)*100);  
         labelContainer.childNodes[0].innerHTML = classPrediction;
         labelContainer.childNodes[0].style.backgroundColor="#03fcb6";
         labelContainer.childNodes[0].style.width=classPrediction;
