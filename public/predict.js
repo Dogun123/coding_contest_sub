@@ -736,7 +736,6 @@ let model, webcam, labelContainer, maxPredictions;
 async function init() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
-
     // load the model and metadata
     // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
     // or files from your local hard drive
@@ -752,12 +751,15 @@ async function init() {
     window.requestAnimationFrame(loop);
 
     // append elements to the DOM
-    document.getElementById("webcam-container").appendChild(webcam.canvas);
+    webcamContainer=document.getElementById("webcam-container")
+    webcamContainer.appendChild(webcam.canvas);
+
     labelContainer = document.getElementById("label-container");
     // for (let i = 0; i < maxPredictions; i++) { // and class labels
     //     labelContainer.appendChild(document.createElement("div"));
     // }
     labelContainer.appendChild(document.createElement("div"));
+    document.querySelector('.webcam-div').style.display='none';
     
 }
 
@@ -776,7 +778,7 @@ async function predict() {
     //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
     //     labelContainer.childNodes[i].innerHTML = classPrediction;
     // }
-        const classPrediction = Math.ceil(prediction[2].probability.toFixed(2)*100)+"% ";    
+        const classPrediction = Math.ceil(prediction[0].probability.toFixed(2)*100)+"% ";    
         labelContainer.childNodes[0].innerHTML = classPrediction;
         labelContainer.childNodes[0].style.backgroundColor="#03fcb6";
         labelContainer.childNodes[0].style.width=classPrediction;
