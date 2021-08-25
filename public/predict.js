@@ -726,14 +726,19 @@ const chartSection = document.querySelector('.section');
 const machineSection = document.querySelector('.section_chart');
 const resultSection = document.querySelector('.predict_result');
 const chartShow = document.querySelector('.summary__entrance');
+const webStarting = document.querySelector('.webcam-starting');
+const camOn = document.querySelector('.cam_on');
 
 chartSection.style.display='none';
 resultSection.style.display='none';
+webStarting.style.display='none'
 
 chartShow.addEventListener('click',()=>{
   resultSection.style.display='none';
   chartSection.style.display='';
 })
+
+
 
 
 const URL = "https://teachablemachine.withgoogle.com/models/P452ZsioK/";
@@ -745,7 +750,9 @@ let predictionNum=0;
 async function init() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
-    
+    webStarting.style.display='';
+    camOn.style.pointer='Default';
+    camOn.style.pointerEvents='none';
     // load the model and metadata
     // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
     // or files from your local hard drive
@@ -813,3 +820,309 @@ async function predict() {
         labelContainer.childNodes[0].style.textAlign="right";
         labelContainer.childNodes[0].style.fontStyle="italic";
 }
+
+const skipButton=document.querySelector(".skip__button");
+const scriptButton1 = document.querySelector(".script_button1");
+const scriptButton2 = document.querySelector(".script_button2");
+const scriptButton3 = document.querySelector(".script_button3");
+const scriptButton4 = document.querySelector(".script_button4");
+const hintButton = document.querySelector(".hint_button");
+const backButton=document.querySelector(".back__button");
+const popuTop=document.querySelector('.popu__summary__top');
+const averageAgeBox=document.querySelector('.average__age');
+const character=document.querySelector('.character');
+const scriptArrowContainer=document.querySelector('.script__arrow__container');
+const yearArrow=document.querySelector('.population__year__arrow');
+const scriptInputBox = document.querySelector('.script_input_box');
+const scriptInput=document.querySelector('.script_input');
+const scrtiptInputSpan = document.querySelector('.script_input_span');
+const scriptToggleBox = document.querySelector('.script_toggle_box');
+const scriptToggleText = document.querySelector('.script_toggle_text');
+const scriptToggleUp = document.querySelector('#script_toggle_up');
+const scriptToggleDown = document.querySelector('#script_toggle_down');
+const chartZero = document.querySelectorAll('.chart_zero');
+const popuChartMid = document.querySelector('.population__chart__mid');
+const wrapper = document.querySelector('.wrapper');
+console.log(chartZero);
+
+// skipButton.style.pointerEvents="none";
+// 컨테이너 보이게,안보이게
+function invisible(i){
+  i.style.opacity='0'
+  i.style.pointerEvents='none'
+
+}
+function visible(i){
+  i.style.opacity='1'
+  i.style.pointerEvents='auto'
+
+}
+
+backButton.style.opacity='0';
+backButton.style.pointerEvents='none';
+invisible(scriptButton1);
+invisible(scriptButton2);
+invisible(scriptButton3);
+invisible(scriptButton4);
+// invisible(backButton);
+invisible(hintButton);
+scriptInputBox.style.display='none';
+scriptToggleBox.style.display='none';
+
+// 스크립트 접기,펼치기
+const scriptFold=document.querySelector('.script__arrow__down');
+const scriptOpen=document.querySelector('.script__arrow__up');
+const scriptContainer=document.querySelector('.gamerule');
+const popuSectionContainer=document.querySelector('.popu__section__container');
+scriptOpen.style.display='none';
+
+scriptFold.addEventListener('click',()=>{
+  scriptFold.style.display = 'none';
+  scriptOpen.style.display='';
+  if(scriptTop==false){
+    scriptContainer.style.top='95%';
+  } else{
+    console.log('hi');
+    scriptContainer.style.top='-185px';
+  }
+})
+
+scriptOpen.addEventListener('click',()=>{
+  scriptFold.style.display = '';
+  scriptOpen.style.display='none';
+  if(scriptTop==false){
+    scriptContainer.style.top='';
+
+  } else{
+    console.log('hi');
+    scriptContainer.style.top='0';
+  }
+
+})
+    
+
+    const content =["대한민국은 현재 태어나는 아이는 점점 줄어들고../노인 인구는 점점 늘어나고 있어서 큰일이라고 해.","계속해서 아이를 낳지 않는다면 2050년 대한민국은 인구 구성은 어떤 모습일까?","인구 피라미드 활동지에 2050년 인구 피라미드를 그려보고 카메라를 실행시켜 비추면 네가 2050년 인구 피라미드를 잘 예측했는지 확인해 줄게!"];
+
+  
+
+    
+    const text = document.querySelector(".script");
+    const chartTop = document.querySelector(".popu__summary__top");
+    const retry = "다시 풀기";
+    let index = 0;
+    const speed = 60;
+    const speedSlow = 400;    
+    let typingCount = 0;
+
+
+    function typing(){
+      // if(index<content[typingCount].length){
+      //   if(content[typingCount][index]=="/"){
+      //     var a = document.createElement('br')
+      //     text.append(a)
+      //     index++
+      //   }
+      //   text.textContent += content[typingCount][index++]
+      // } else{
+      //   skipButton.classList.add('skip__animation');
+      //   clearInterval(typing);
+      // }
+    // 바로넘어가기 방지(버튼을 눌렀을때만 넘어가도록)
+      
+    if(index<content[typingCount].length){
+      if(content[typingCount][index]=="/"){
+        var a = document.createElement('br');
+        text.append(a)
+        index++
+        setTimeout(typing, speedSlow);
+        } else{
+          text.append(content[typingCount][index])
+          index++
+          setTimeout(typing,speed);
+        }
+      } else{
+          skipButton.classList.add('skip__animation');
+          typingAnimation()
+      }
+    }
+
+    
+    function goNext(){
+      // skipButton.classList.remove('skip__animation')
+      // index=0;
+      // text.textContent = "";
+      // typingCount++;
+      // setInterval(typing, 100);
+      // console.log(typingCount);
+      // typingAnimation();
+
+      skipButton.classList.remove('skip__animation')
+      index=0;
+      text.textContent = "";
+      typingCount++;
+      console.log(typingCount);
+      setTimeout(typing, speed);
+      typingAnimation();
+    }
+    
+    function goBack(){
+      // skipButton.classList.remove('skip__animation')
+      // index=0;
+      // text.textContent="";
+      // typingCount--;
+      // setInterval(typing, 100);
+      // console.log(typingCount);
+
+      // typingAnimation();
+      skipButton.classList.remove('skip__animation')
+      index=0;
+      text.textContent="";
+      typingCount--;
+      console.log(typingCount);
+      setTimeout(typing, speed);
+      typingAnimation()
+    }
+    
+    function right(){
+      skipButton.classList.remove('skip__animation')
+      index=0;
+      text.textContent="";
+      typingCount=typingCount+2;
+      setTimeout(typing, speed);
+      console.log(typingCount);
+      typingAnimation();
+    }
+
+    // setInterval(typing, 100);
+    
+    setTimeout(typing, speed);
+    
+    // 넘어가기,뒤로가기
+    skipButton.addEventListener('click',()=>{
+        goNext();
+        
+    })
+    
+    backButton.addEventListener('click',()=>{
+        goBack();
+    })
+
+    scriptButton1.addEventListener('click',()=>{
+     if(typingCount==2){
+      wrapper.style.display='none';
+     }
+
+    })
+
+    scriptButton2.addEventListener('click',()=>{
+     
+    })
+
+    scriptButton3.addEventListener('click',()=>{
+   
+    })
+
+    scriptButton4.addEventListener('click',()=>{
+    
+    })
+    
+    // 버튼 기능 비활성화
+    
+    function typingAnimation(){
+      // 다음버튼 보이기여부 
+      if(typingCount==2 || typingCount==7){
+        skipButton.style.opacity='0';
+      } else{
+        skipButton.style.opacity='1';
+      }
+
+      // 버튼1 보이기여부
+      if(typingCount==2){
+        scriptButton1.style.opacity='1';
+        scriptButton1.style.pointerEvents='auto';
+      }
+
+      // 버튼2 보이기여부
+      if(typingCount>=1){
+        backButton.style.opacity='1'
+        backButton.style.pointerEvents='auto';
+      } else{
+        backButton.style.opacity='0'
+        backButton.style.pointerEvents='none';
+      }
+      
+      // 버튼3 보이기여부
+
+
+      // 버틑4 보이기여부
+
+
+      // 버튼 텍스트값 지정
+
+
+      // input보이기 여부
+
+
+
+      // hint보이기 여부
+
+
+      // hint텍스트
+
+
+      // 차트컨테이너 깜빡임
+
+
+      // 고련화박스 깜빡임
+
+      // 차트바 깜빡임
+
+
+      // 차트 나이 세로축 깜빡임
+
+
+
+    }  
+    
+    
+    // 스크립트 위치 위로 or 아래로
+    let scriptTop = false;
+    
+    function scriptUp() {
+      scriptContainer.style.top='0';
+      character.style.bottom='0px';
+      scriptArrowContainer.style.bottom='-219px';
+      scriptTop = true;
+    }
+    
+    function scriptDown() {
+      scriptContainer.style.top='';
+      character.style.bottom='50px';
+      scriptArrowContainer.style.bottom='30px';
+      scriptTop = false;
+    }    
+
+// 비동기 지연함수
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+
+
+// 힌트
+const hintContainer = document.querySelector(".hint_container");
+const hintText = document.querySelector('.hint');
+const hintClose = document.querySelector('.hint__close');
+
+
+invisible(hintContainer);
+
+hintButton.addEventListener('click',()=>{
+  visible(hintContainer);
+})
+
+hintClose.addEventListener('click',()=>{
+  invisible(hintContainer);
+})
+
+// 스크립트 토글 버튼

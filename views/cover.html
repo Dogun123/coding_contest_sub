@@ -9,12 +9,18 @@
     <link rel="icon" type = "image/png" href = "imgs\map.png">
     <title>초등사회지도학습</title>
     <script src="https://kit.fontawesome.com/02390708a3.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
     </style>
     <link rel="stylesheet" href="style.css">
     <script src="cover.js" defer></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ad88d7a8e094180a8cd1057c875dd395"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
+    <!-- chart.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <!-- google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
 </head>
 <body>
@@ -26,9 +32,7 @@
             <button class="summary__entrance" onclick="location.href='learn'">학습하기</button>
             <button class="summary__entrance" onclick="location.href='population'">차트보기</button>
         </div>
-        <img class="summary__penguin" src="/imgs/penguin.png" alt="">
     </section>
-    
 
     <!-- About -->
     <section id='about' class="section">
@@ -73,5 +77,7 @@
             2021 Dogun & Seungmin - All rights reserved
         </p>
     </section>
+
+
 </body>
 </html>

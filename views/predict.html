@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     
 </head>
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style= "background-image: url('imgs/people-5542891_1920.jpg');">
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style= "background-image: url('imgs/people-5542891_1920.jpg'); overflow:hidden">
     <section id="chart" class="section predict_pyramid" style="background-color: blanchedalmond;">
         <div class="blank" style="height:50px;"></div>
         <div class="popu__section__container" >
@@ -218,10 +218,13 @@
         </div>
         <div id="webcam-container">
             <div class="webcam-div">
-                <div class="webcam-div-expl" style="font-size: 22px; font-style: normal; margin-top:130px; margin-bottom:140px;padding:0px 20px;font-style:italic;">
+                <div class="webcam-div-expl" style="font-size: 22px; font-style: normal; margin-top:130px; margin-bottom:50px;padding:0px 20px;font-style:italic;">
                     인구 피라미드 활동지를 완성한 후 <button type="button" class="cam_on" onclick="init()">시작하기 <i class="fas fa-video"></i></button> 버튼을 눌러 카메라를 실행시키세요.
                 </div>
-            </div>
+                <div class="webcam-starting" style="font-size: 23px; font-style: normal; margin-top:50px;padding:0px 20px;font-style:normal; font-weight:bold; display : none">
+                    실행중...
+                </div>
+            </div>    
         </div>
         <div id="label-container"></div>
 
@@ -239,7 +242,50 @@
 
     </section>
 
+    <div class="wrapper">
+        <div class="gamerule">
+            <div class="script__arrow__container">
+                <button class="hint_button">힌트 <i class="fas fa-exclamation"></i></button>
+                <div class="script__arrow__down">
+                    접기
+                <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="script__arrow__up">
+                    펼치기
+                    <i class="fas fa-chevron-up"></i>
+                </div>
+                
+            </div>
+                <img class="character" src="imgs/penguin.png" alt=""/>
+            <div class="script__container">
+                <div class="script"></div>
+                <div class="script__button__container">
+                    <div class="script__button__box">
+                        <div class="script_toggle_box">
+                            <div class="script_toggle_text">1950</div>
+                            <div class="script_toggle_arrow">
+                                <!-- 구글 아이콘 -->
+                                <span id="script_toggle_up" class="material-icons script_toggle_up">arrow_drop_up</span>
+                                <span id="script_toggle_down" class="material-icons script_toggle_down">arrow_drop_down</span>
+                            </div>
+                        </div>
+                        <div class="script_input_box"><input class="script_input" type="text"/><span class="script_input_span">명</span></div>
+                        <button class="script_button1">시작하기</button>
+                        <button class="script_button2">시작하기</button>
+                        <button class="script_button3">시작하기</button>
+                        <button class="script_button4">시작하기</button>
+                    </div>
+                </div>
+                <div class="skip__button__box">
+                    <div class="back__button"> < Back</div>
+                    <div class="skip__button">Next ></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
     <!-- <input type="file" onchange="readExcel()"> -->
+
 </body>
 </html>
 

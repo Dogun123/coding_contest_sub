@@ -108,6 +108,15 @@ p {
   margin: auto;
 }
 
+.cover_section{
+  position:absolute;
+  text-align: center;
+  padding: 100px;
+  margin: auto;
+  top:250px;
+  right: 70px;
+}
+
 .section_chart {
   text-align: center;
   padding: 100px;
@@ -1062,7 +1071,6 @@ p {
 .population__chart__container{
   width: 100%;
   display: flex;
-  background-color: blanchedalmond;
   padding: 20px 0px;
 }
 
@@ -1504,6 +1512,7 @@ p {
 }
 
 #webcam-container{
+  position:relative;
   display: flex;
   justify-content: center;
   margin-top: 20px;

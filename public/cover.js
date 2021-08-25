@@ -69,8 +69,3 @@ function scrollIntoView(selector) {
 
 
 
-
-
-
-
-
