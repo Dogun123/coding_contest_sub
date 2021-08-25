@@ -334,7 +334,7 @@ p {
   color:var(--color-grey);
 }
 
-.summary__entrance {
+.summary__entrance,.webcam_retry {
   margin: 4px;
   margin-top: 30px;
   width: 120px;
@@ -359,6 +359,13 @@ p {
   
   /* font-size: 18px; */
 }
+
+.webcam_retry:hover{
+  background-color: #f15651;
+  width: 135px;
+  height: 45px;
+}
+
 .summary__penguin{
   position: relative;
   bottom:100px;
@@ -870,7 +877,7 @@ p {
 
 /* population_chart ---> */
 
-#chart{
+#chart,#webcam-chart,#webcam_result_chart{
   height: 100vh;
   padding-top:30px;
   padding-bottom:0px;
@@ -1318,7 +1325,7 @@ p {
 
 
 .skip__button__box{
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 
@@ -1456,6 +1463,10 @@ p {
   margin-right: 20px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.back__button:hover{
+  color:var(--color-blue);
 }
 
 .skip__button{

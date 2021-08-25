@@ -23,6 +23,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     
+
+
+
+
+    
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style= "background-image: url('imgs/people-5542891_1920.jpg'); overflow:hidden">
     <section id="chart" class="section predict_pyramid" style="background-color: blanchedalmond;">
@@ -209,7 +214,7 @@
         
     </section>
 
-    <section id="chart" class="section_chart">
+    <section id="webcam-chart" class="section_chart">
         <div class="predict_title_container">        <div class="predict_title">2050년 인구를 예측해 보세요.</div></div>
         <div class="webcam-div-down" style="padding:0px 5px">
             *<a style="color:red">인구 피라미드 활동지</a>를 다운받으려면
@@ -231,11 +236,13 @@
 
     </section>
 
-    <section id="chart" class="predict_result">
+    <section id="webcam_result_chart" class="predict_result">
         <div class="webcam-result">
             <div style="background-image: url('imgs/predictSuccess.png'); width:600px; height:250px; margin:auto;"></div>
+                <button class="summary__entrance">그래프 보기</button>
+                <button id="webcam_retry" class="webcam_retry">다시 하기</button>
+            </div>
 
-            <button class="summary__entrance">그래프 보기</button>
         </div>
 
         

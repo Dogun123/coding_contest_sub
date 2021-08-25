@@ -822,8 +822,8 @@ const chartTop = document.querySelector(".popu__summary__top");
 
 let index = 0;
 let isStop = false;
-const speed = 60;
-const speedSlow = 400;  
+let speed = 60;
+let speedSlow = 400;  
 
 let typingCount = 0;
 
@@ -906,6 +906,12 @@ backButton.addEventListener('click',()=>{
   goBack();
 })
 
+text.addEventListener('click',()=>{
+  speed=5;
+  speedSlow=5;
+  console.log('hi');
+})
+
 // 버튼 기능 비활성화
 populationTitle.style.pointerEvents="none";
 averageAgeContainer.style.pointerEvents="none";
@@ -917,6 +923,10 @@ chartResume.style.pointerEvents="none";
 chartStop.style.pointerEvents="none";
 
 function typingAnimation(){
+
+  speed=60;
+  speedSlow=400;
+
   if(typingCount==2 || typingCount==3 || typingCount==4 || typingCount==5){
     chartTop.style.backgroundColor="white";
   } else{

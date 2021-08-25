@@ -728,16 +728,23 @@ const resultSection = document.querySelector('.predict_result');
 const chartShow = document.querySelector('.summary__entrance');
 const webStarting = document.querySelector('.webcam-starting');
 const camOn = document.querySelector('.cam_on');
+const webcamRetry = document.querySelector('.webcam_retry');
+
 
 chartSection.style.display='none';
 resultSection.style.display='none';
 webStarting.style.display='none'
+camOn.style.pointerEvents='none';
+
 
 chartShow.addEventListener('click',()=>{
   resultSection.style.display='none';
   chartSection.style.display='';
 })
 
+webcamRetry.addEventListener('click',()=>{
+    location.reload();
+})
 
 
 
@@ -910,8 +917,8 @@ scriptOpen.addEventListener('click',()=>{
     const chartTop = document.querySelector(".popu__summary__top");
     const retry = "다시 풀기";
     let index = 0;
-    const speed = 60;
-    const speedSlow = 400;    
+    let speed = 60;
+    let speedSlow = 400;    
     let typingCount = 0;
 
 
@@ -1010,6 +1017,9 @@ scriptOpen.addEventListener('click',()=>{
     scriptButton1.addEventListener('click',()=>{
      if(typingCount==2){
       wrapper.style.display='none';
+      camOn.style.pointerEvents='auto';
+     } else{
+       wrapper.style.display=''
      }
 
     })
@@ -1026,9 +1036,17 @@ scriptOpen.addEventListener('click',()=>{
     
     })
     
+    text.addEventListener('click',()=>{
+      speed=5;
+      speedSlow=5;
+      console.log('hi');
+    })
     // 버튼 기능 비활성화
     
     function typingAnimation(){
+      speed=60;
+      speedSlow=400;
+
       // 다음버튼 보이기여부 
       if(typingCount==2 || typingCount==7){
         skipButton.style.opacity='0';
@@ -1040,6 +1058,9 @@ scriptOpen.addEventListener('click',()=>{
       if(typingCount==2){
         scriptButton1.style.opacity='1';
         scriptButton1.style.pointerEvents='auto';
+      } else{
+        scriptButton1.style.opacity='0';
+        scriptButton1.style.pointerEvents='none';
       }
 
       // 버튼2 보이기여부
