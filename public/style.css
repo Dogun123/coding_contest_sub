@@ -1529,7 +1529,9 @@ p {
 
 .webcam-result{
   margin:auto;
+  text-align: center;
 }
+
 
 /* <-- predict chart */
 

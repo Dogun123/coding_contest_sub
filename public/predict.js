@@ -725,10 +725,15 @@ function sleep(ms) {
 const chartSection = document.querySelector('.section');
 const machineSection = document.querySelector('.section_chart');
 const resultSection = document.querySelector('.predict_result');
-
+const chartShow = document.querySelector('.summary__entrance');
 
 chartSection.style.display='none';
 resultSection.style.display='none';
+
+chartShow.addEventListener('click',()=>{
+  resultSection.style.display='none';
+  chartSection.style.display='';
+})
 
 
 const URL = "https://teachablemachine.withgoogle.com/models/P452ZsioK/";
