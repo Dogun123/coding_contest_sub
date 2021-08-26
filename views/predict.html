@@ -29,9 +29,8 @@
 
     
 </head>
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style= "background-image: url('imgs/people-5542891_1920.jpg'); overflow:hidden">
+<body id="body" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" style= "background-image: url('imgs/people-5542891_1920.jpg'); overflow:scroll;">
     <section id="chart" class="section predict_pyramid" style="background-color: blanchedalmond;">
-        <div class="blank" style="height:50px;"></div>
         <div class="popu__section__container" >
             <div class="popu__summary__top">
                 <div class="average__age">
@@ -224,7 +223,7 @@
         <div id="webcam-container">
             <div class="webcam-div">
                 <div class="webcam-div-expl" style="font-size: 22px; font-style: normal; margin-top:130px; margin-bottom:50px;padding:0px 20px;font-style:italic;">
-                    인구 피라미드 활동지를 완성한 후 <button type="button" class="cam_on" onclick="init()">시작하기 <i class="fas fa-video"></i></button> 버튼을 눌러 카메라를 실행시키세요.
+                    인구 피라미드 활동지를 완성한 후 <button type="button" class="cam_on" onclick="initPlay()">시작하기 <i class="fas fa-video"></i></button> 버튼을 눌러 카메라를 실행시키세요.
                 </div>
                 <div class="webcam-starting" style="font-size: 23px; font-style: normal; margin-top:50px;padding:0px 20px;font-style:normal; font-weight:bold; display : none">
                     실행중...

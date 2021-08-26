@@ -108,6 +108,10 @@ p {
   margin: auto;
 }
 
+.predict_pyramid{
+  display:flex;
+}
+
 .cover_section{
   position:absolute;
   text-align: center;
@@ -334,7 +338,8 @@ p {
   color:var(--color-grey);
 }
 
-.summary__entrance,.webcam_retry {
+.summary__entrance,
+.webcam_retry {
   margin: 4px;
   margin-top: 30px;
   width: 120px;
@@ -356,15 +361,13 @@ p {
   background-color: #f15651;
   width: 135px;
   height: 45px;
-  
-  /* font-size: 18px; */
 }
-
-.webcam_retry:hover{
+.webcam_retry:hover {
   background-color: #f15651;
   width: 135px;
   height: 45px;
-}
+}  
+  
 
 .summary__penguin{
   position: relative;
@@ -877,7 +880,7 @@ p {
 
 /* population_chart ---> */
 
-#chart,#webcam-chart,#webcam_result_chart{
+#chart{
   height: 100vh;
   padding-top:30px;
   padding-bottom:0px;
@@ -1310,7 +1313,7 @@ p {
 
 
 .script{
-  font-size: var(--font-medium);
+  font-size: 26px;
   display: flex;
   text-align: left;
   width:80%;
@@ -1465,10 +1468,6 @@ p {
   cursor: pointer;
 }
 
-.back__button:hover{
-  color:var(--color-blue);
-}
-
 .skip__button{
   /* pointer-events: none; */
 }
@@ -1523,7 +1522,6 @@ p {
 }
 
 #webcam-container{
-  position:relative;
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -1557,7 +1555,7 @@ p {
 
 
 
-/* For below 1180px screen width */
+/* For below 1280px screen width */
 @media (max-width: 1280px) {
   #summary {
     padding-left: 10;

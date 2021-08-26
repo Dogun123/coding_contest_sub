@@ -729,7 +729,7 @@ const chartShow = document.querySelector('.summary__entrance');
 const webStarting = document.querySelector('.webcam-starting');
 const camOn = document.querySelector('.cam_on');
 const webcamRetry = document.querySelector('.webcam_retry');
-
+const body = document.querySelector('#body');
 
 chartSection.style.display='none';
 resultSection.style.display='none';
@@ -740,6 +740,8 @@ camOn.style.pointerEvents='none';
 chartShow.addEventListener('click',()=>{
   resultSection.style.display='none';
   chartSection.style.display='';
+  body.style.background="none";
+  body.style.backgroundColor="#ffebcd"
 })
 
 webcamRetry.addEventListener('click',()=>{
@@ -777,6 +779,7 @@ async function init() {
     // append elements to the DOM
     webcamContainer=document.getElementById("webcam-container")
     webcamContainer.appendChild(webcam.canvas);
+    
 
     labelContainer = document.getElementById("label-container");
     // for (let i = 0; i < maxPredictions; i++) { // and class labels
@@ -792,9 +795,10 @@ async function loop() {
     await predict();
     if(classlevel>=100){
       predictionNum ++
-      console.log(predictionNum);
+      // console.log(predictionNum);
     };
     if(predictionNum==100){
+      // console.log(webcam);
       await webcam.stop();
       setTimeout(()=>{
         machineSection.style.display='none'
@@ -826,6 +830,86 @@ async function predict() {
         labelContainer.childNodes[0].style.borderRadius="5px";
         labelContainer.childNodes[0].style.textAlign="right";
         labelContainer.childNodes[0].style.fontStyle="italic";
+}
+
+async function init2() {
+  const modelURL = URL + "model.json";
+  const metadataURL = URL + "metadata.json";
+  webStarting.style.display='';
+  camOn.style.pointer='Default';
+  camOn.style.pointerEvents='none';
+  // load the model and metadata
+  // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+  // or files from your local hard drive
+  // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+  model = await tmImage.load(modelURL, metadataURL);
+  maxPredictions = model.getTotalClasses();
+
+  // Convenience function to setup a webcam
+  const flip = true; // whether to flip the webcam
+  webcam2 = new tmImage.Webcam(150, 150, flip); // width, height, flip
+  await webcam2.setup(); // request access to the webcam
+  await webcam2.play();
+  window.requestAnimationFrame(loop2);
+
+  // append elements to the DOM
+  webcamContainer=document.getElementById("webcam-container")
+  chartSection.appendChild(webcam2.canvas);
+
+  labelContainer = document.getElementById("label-container");
+  // for (let i = 0; i < maxPredictions; i++) { // and class labels
+  //     labelContainer.appendChild(document.createElement("div"));
+  // }
+  labelContainer.appendChild(document.createElement("div"));
+  document.querySelector('.webcam-div').style.display='none';
+  
+}
+
+async function loop2() {
+  webcam2.update(); // update the webcam frame
+  await predict2();
+  if(classlevel>=100){
+    predictionNum ++
+    console.log(predictionNum);
+  };
+  if(predictionNum==100){
+    console.log(webcam2);
+    await webcam2.stop();
+    setTimeout(()=>{
+      machineSection.style.display='none'
+    },2000);
+    setTimeout(()=>{
+      resultSection.style.display=''
+    },2500);
+
+  }else{
+    window.requestAnimationFrame(loop);
+  }
+  
+}
+
+// run the webcam image through the image model
+async function predict2() {
+  // predict can take in an image, video or canvas html element
+  const prediction = await model.predict(webcam2.canvas);
+  // for (let i = 0; i < maxPredictions; i++) {
+  //     const classPrediction =
+  //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+  //     labelContainer.childNodes[i].innerHTML = classPrediction;
+  // }
+      const classPrediction = Math.ceil(prediction[2].probability.toFixed(2)*100)+"%";
+      classlevel=  Math.ceil(prediction[2].probability.toFixed(2)*100);  
+      labelContainer.childNodes[0].innerHTML = classPrediction;
+      labelContainer.childNodes[0].style.backgroundColor="#03fcb6";
+      labelContainer.childNodes[0].style.width=classPrediction;
+      labelContainer.childNodes[0].style.borderRadius="5px";
+      labelContainer.childNodes[0].style.textAlign="right";
+      labelContainer.childNodes[0].style.fontStyle="italic";
+}
+
+async function initPlay(){
+  init();
+  init2();
 }
 
 const skipButton=document.querySelector(".skip__button");
