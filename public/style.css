@@ -110,6 +110,8 @@ p {
 
 .predict_pyramid{
   display:flex;
+  align-items: center;
+
 }
 
 .cover_section{
@@ -124,6 +126,7 @@ p {
 .section_chart {
   text-align: center;
   padding: 100px;
+  padding-top:30px;
   margin: auto;
 }
 
